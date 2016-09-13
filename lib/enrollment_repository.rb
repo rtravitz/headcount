@@ -10,8 +10,11 @@ class EnrollmentRepository
 
   def load_data(path)
     CSV.foreach path[:enrollment][:kindergarten], headers: true, header_converters: :symbol do |row|
-      unless location_exists?(row[:location])
-        @repository[row[:location].upcase] = Enrollment.new({name: row[:location].upcase, kindergarten_participation: row[:data]})
+      if location_exists?(row[:location])
+        @repository[row[:location].upcase].participation[row[:timeframe].to_i] = row[:data].to_f
+      else
+        @repository[row[:location].upcase] = Enrollment.new({name: row[:location].upcase})
+        @repository[row[:location].upcase].participation[row[:timeframe].to_i] = row[:data].to_f
       end
     end
   end
