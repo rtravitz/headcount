@@ -20,7 +20,7 @@ class DistrictRepositoryTest < Minitest::Test
     dr = DistrictRepository.new
     dr.load_data({
       :enrollment => {
-      :kindergarten => "./data/Kindergartners in full-day program.csv"
+      :kindergarten => "./test/fixtures/Kindergartners in full-day program.csv"
       }
     })
     dr.repository.each do |name, district|
@@ -28,15 +28,30 @@ class DistrictRepositoryTest < Minitest::Test
     end
   end
 
+  def test_load_data_creates_associated_enrollment_repository
+    dr = DistrictRepository.new
+    dr.load_data({
+      :enrollment => {
+      :kindergarten => "./test/fixtures/Kindergartners in full-day program.csv"
+      }
+    })
+
+    district = dr.find_by_name("ACADEMY 20")
+    action = district.enrollment.kindergarten_participation_in_year(2010)
+    assert_equal 0.436, action
+  end
+
   def test_find_by_name_returns_correct_district
     dr = DistrictRepository.new
     dr.load_data({
       :enrollment => {
-        :kindergarten => "./data/Kindergartners in full-day program.csv"
+        :kindergarten => "./test/fixtures/Kindergartners in full-day program.csv"
       }
       })
     district = dr.find_by_name("ACADEMY 20")
 
     assert_equal "ACADEMY 20", district.name
   end
+
+
 end
