@@ -21,4 +21,11 @@ class EnrollmentTest < Minitest::Test
     assert_equal 0.353, @e.kindergarten_participation[2011]
     assert_equal 0.267, @e.kindergarten_participation[2012]
   end
+
+  def test_kindergarten_participation_in_year_returns_correct_truncated_number
+    assert_equal nil, @e.kindergarten_participation_in_year(2000)
+    assert_equal 0.391, @e.kindergarten_participation_in_year(2010)
+    assert_equal 0.353, @e.kindergarten_participation_in_year(2011)
+    assert_equal 0.267, @e.kindergarten_participation_in_year(2012)
+  end
 end
