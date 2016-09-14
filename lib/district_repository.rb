@@ -1,6 +1,6 @@
 require 'csv'
-require './lib/district'
-require './lib/enrollment_repository'
+require_relative 'district'
+require_relative 'enrollment_repository'
 
 class DistrictRepository
   attr_reader :repository, :enrollment_repo
@@ -34,4 +34,11 @@ class DistrictRepository
   def find_by_name(name)
     @repository[name]
   end
+
+  def find_all_matching(fragment)
+   @repository.select do |name, district|
+     district if name.include?(fragment.upcase)
+   end.values
+ end
+
 end

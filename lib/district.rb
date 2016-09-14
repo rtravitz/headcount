@@ -1,4 +1,4 @@
-require './lib/enrollment_repository'
+require_relative './enrollment_repository'
 
 class District
   attr_accessor :enrollment

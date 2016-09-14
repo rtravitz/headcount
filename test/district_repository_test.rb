@@ -53,5 +53,17 @@ class DistrictRepositoryTest < Minitest::Test
     assert_equal "ACADEMY 20", district.name
   end
 
+  def test_can_find_all_matching_names_in_district_hash
+   dr = DistrictRepository.new
+   dr.load_data({
+   :enrollment => {
+     :kindergarten => "./data/Kindergartners in full-day program.csv"
+     }
+     })
+   district = dr.find_all_matching("Adam")
+   assert_equal 2, district.count
+   assert_equal [], dr.find_all_matching("blahhdhdhfd")
+ end
+
 
 end
