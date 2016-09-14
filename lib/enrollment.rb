@@ -4,11 +4,10 @@ class Enrollment
 
   def initialize(data)
     @name = data[:name]
-    @participation = Hash.new
-    @participation[data[:timeframe]] = data[:data]
+    @participation = data[:kindergarten_participation]
   end
 
-  def kindergarten_participation
+  def kindergarten_participation_by_year
     @participation.each do |year, rate|
       @participation[year] = rate.to_s[0..4].to_f
     end
@@ -16,7 +15,6 @@ class Enrollment
   end
 
   def kindergarten_participation_in_year(year)
-    require "pry"; binding.pry
     if @participation[year].nil?
       nil
     else

@@ -13,8 +13,9 @@ class EnrollmentRepository
       if location_exists?(row[:location])
         @repository[row[:location].upcase].participation[row[:timeframe].to_i] = row[:data].to_f
       else
-        @repository[row[:location].upcase] = Enrollment.new({name: row[:location].upcase, timeframe: row[:timeframe].to_i, data: row[:data].to_f})
-        # @repository[row[:location].upcase].participation[row[:timeframe].to_i] = row[:data].to_f
+        @repository[row[:location].upcase] = Enrollment.new(
+        { :name => row[:location].upcase, 
+          :kindergarten_participation => {row[:timeframe].to_i => row[:data].to_f}})
       end
     end
   end

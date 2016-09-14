@@ -9,14 +9,14 @@ class HeadcountAnalyst
   def kindergarten_participation_rate_variation(district, against)
     numerator = @district_repository.find_by_name(district.upcase).enrollment
     denominator = @district_repository.find_by_name(against[:against]).enrollment
-    numerator_average = average(numerator.kindergarten_participation.values)
-    denominator_average = average(denominator.kindergarten_participation.values)
+    numerator_average = average(numerator.kindergarten_participation_by_year.values)
+    denominator_average = average(denominator.kindergarten_participation_by_year.values)
     (numerator_average / denominator_average).round(3)
   end
 
   def kindergarten_participation_rate_variation_trend(district, against)
-    numerator = @district_repository.find_by_name(district.upcase).enrollment.kindergarten_participation
-    denominator = @district_repository.find_by_name(against[:against]).enrollment.kindergarten_participation
+    numerator = @district_repository.find_by_name(district.upcase).enrollment.kindergarten_participation_by_year
+    denominator = @district_repository.find_by_name(against[:against]).enrollment.kindergarten_participation_by_year
     result = Hash.new
     numerator.each do |year, rate|
       result[year] = (rate / denominator[year]).round(3)
