@@ -1,7 +1,9 @@
-require 'csv'
 require_relative './enrollment'
+require_relative './loader'
 
 class EnrollmentRepository
+  include Loader
+
   attr_reader :repository
 
   def initialize
@@ -9,12 +11,14 @@ class EnrollmentRepository
   end
 
   def load_data(path)
-    CSV.foreach path[:enrollment][:kindergarten], headers: true, header_converters: :symbol do |row|
-      if location_exists?(row[:location])
-        @repository[row[:location].upcase].participation[row[:timeframe].to_i] = row[:data].to_f
+    contents = Loader.load_data(path)
+    contents.each do |row|
+      location = row[:location].upcase
+      if location_exists?(location)
+        @repository[location].participation[row[:timeframe].to_i] = row[:data].to_f
       else
-        @repository[row[:location].upcase] = Enrollment.new(
-        { :name => row[:location].upcase, 
+        @repository[location] = Enrollment.new(
+        { :name => location,
           :kindergarten_participation => {row[:timeframe].to_i => row[:data].to_f}})
       end
     end

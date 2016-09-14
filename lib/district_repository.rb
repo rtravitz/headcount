@@ -1,8 +1,10 @@
-require 'csv'
+require_relative 'loader'
 require_relative 'district'
 require_relative 'enrollment_repository'
 
 class DistrictRepository
+  include Loader
+
   attr_reader :repository, :enrollment_repo
 
   def initialize
@@ -12,8 +14,8 @@ class DistrictRepository
 
   def load_data(path)
     @enrollment_repo.load_data(path)
-    path = path[:enrollment][:kindergarten]
-    CSV.foreach path, headers: true, header_converters: :symbol do |row|
+    contents = Loader.load_data(path)
+    contents.each do |row|
       unless location_exists?(row[:location])
         @repository[row[:location].upcase] = District.new({name: row[:location].upcase})
       end
