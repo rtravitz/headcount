@@ -56,7 +56,7 @@ class DistrictRepositoryTest < Minitest::Test
   def test_can_find_all_matching_names_in_district_hash
    dr = DistrictRepository.new
    dr.load_data({
-   :enrollment => {
+    :enrollment => {
      :kindergarten => "./data/Kindergartners in full-day program.csv"
      }
      })
