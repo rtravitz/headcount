@@ -32,4 +32,22 @@ class EnrollmentRepositoryTest < Minitest::Test
     enrollment = er.find_by_name("ACADEMY 20")
     assert_equal "ACADEMY 20", enrollment.name
   end
+
+  def test_load_data_adds_high_school_information
+    er = EnrollmentRepository.new
+    er.load_data({
+      :enrollment => {
+        :kindergarten => "./data/Kindergartners in full-day program.csv",
+        :high_school_graduation => "./data/High school graduation rates.csv"
+      }
+    })
+
+    enrollment = er.repository["ACADEMY 20"]
+    require "pry"; binding.pry
+
+    assert_in_delta 0.395, enrollment.participation[:kindergarten][2008], 0.005
+    assert_in_delta 0.479, enrollment.participation[:kindergarten][2012], 0.005
+    assert_in_delta 0.895, enrollment.participation[:high_school][2011], 0.005
+    assert_in_delta 0.914, enrollment.participation[:high_school][2013], 0.005
+  end
 end
