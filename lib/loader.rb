@@ -12,7 +12,8 @@ module Loader
   end
 
   def self.get_all_data(path)
-    result = path[:enrollment].map do |level, file|
+    type = check_repo_type(path)
+    result = path[type].map do |level, file|
       contents = parse_csv(file).map(&:to_h)
       contents.map do |row|
         row[:source] = level
@@ -24,6 +25,12 @@ module Loader
 
   def self.group_data(all_data)
     all_data.group_by{|item| item[:location]}
+  end
+
+  def self.check_repo_type(path)
+    return :enrollment if path.has_key?(:enrollment)
+    return :statewide_testing if path.has_key?(:statewide_testing)
+    return :economic_profile if path.has_key?(:economic_profile)
   end
 
 

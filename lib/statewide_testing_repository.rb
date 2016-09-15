@@ -1,11 +1,12 @@
-require_relative 'enrollment'
 require_relative 'loader'
 require_relative 'organizer'
+require_relative 'statewide_testing'
+require 'pry'
 
-class EnrollmentRepository
+class StatewideTestingRepository
+
   include Loader
   include Organizer
-
   attr_reader :repository
 
   def initialize
@@ -15,12 +16,9 @@ class EnrollmentRepository
   def load_data(path)
     grouped_data = Loader.load_data(path)
     grouped_data.each do |name, data|
-      organized_data = Organizer.organize_enrollment_data(data)
-      @repository[name.upcase] = Enrollment.new(organized_data)
+      organized_data = Organizer.organize_statewide_testing_data(data)
+      @repository[name.upcase] = StatewideTesting.new(data)
     end
   end
 
-  def find_by_name(name)
-    @repository[name]
-  end
 end

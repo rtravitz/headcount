@@ -1,6 +1,6 @@
 module Organizer
 
-  def self.organize_data(data)
+  def self.organize_enrollment_data(data)
     information = Hash.new
     data.each do |row|
       if information[row[:source]]
@@ -21,5 +21,20 @@ module Organizer
     end
     information
   end
+
+  def self.organize_statewide_testing_data(data)
+    information = Hash.new
+    data.each do |row|
+      if row[:source] == :third_grade || row[:source] == :eighth_grade
+        {information[row[:score]] => {row[:source] => {row[:timeframe] => row[:data]}}}
+      else
+        
+      end
+    end
+    information[:name] = data.first[:location].upcase
+    information
+  end
+
+
 
 end
