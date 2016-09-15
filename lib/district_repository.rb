@@ -14,10 +14,12 @@ class DistrictRepository
 
   def load_data(path)
     @enrollment_repo.load_data(path)
-    contents = Loader.load_data(path)
-    contents.each do |row|
-      unless location_exists?(row[:location])
-        @repository[row[:location].upcase] = District.new({name: row[:location].upcase}, self)
+    path[:enrollment].each do |level, file_path|
+      contents = Loader.load_data(file_path)
+      contents.each do |row|
+        unless location_exists?(row[:location])
+          @repository[row[:location].upcase] = District.new({name: row[:location].upcase}, self)
+        end
       end
     end
     associate_enrollments_and_districts

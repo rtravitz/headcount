@@ -10,7 +10,6 @@ class District
   end
 
   def enrollment
-    require "pry"; binding.pry
     @dr.find_enrollment(@name)
   end
 end

@@ -25,7 +25,6 @@ class DistrictTest < Minitest::Test
     })
     district = dr.find_by_name("ACADEMY 20")
     district.enrollment
-    require "pry"; binding.pry
   end
 
 end
