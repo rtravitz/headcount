@@ -1,5 +1,5 @@
-require_relative './enrollment'
-require_relative './loader'
+require_relative 'enrollment'
+require_relative 'loader'
 
 class EnrollmentRepository
   include Loader
@@ -11,21 +11,26 @@ class EnrollmentRepository
   end
 
   def load_data(path)
-    contents = Loader.load_data(path)
-    contents.each do |row|
-      location = row[:location].upcase
-      if location_exists?(location)
-        @repository[location].participation[row[:timeframe].to_i] = row[:data].to_f
-      else
-        @repository[location] = Enrollment.new(
-        { :name => location,
-          :kindergarten_participation => {row[:timeframe].to_i => row[:data].to_f}})
-      end
+    all_data = get_all_data(path)
+    grouped_data = all_data.group_by{|item| item[:location]}
+    fill_enrollments(grouped_data)
+  end
+
+  def fill_enrollments(grouped_data)
+    grouped_data.each do |name, data|
+      @repository[name] = Enrollment.new({name: name, data: data})
     end
   end
 
-  def location_exists?(location)
-    @repository[location.upcase] ? true : false
+  def get_all_data(path)
+    result = path[:enrollment].map do |level, file|
+      contents = Loader.load_data(path).map(&:to_h)
+      contents.map do |row|
+        row[:source] = level
+        row
+      end
+    end
+    result.flatten
   end
 
   def find_by_name(name)

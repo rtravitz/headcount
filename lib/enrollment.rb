@@ -4,21 +4,32 @@ class Enrollment
 
   def initialize(data)
     @name = data[:name]
-    @participation = data[:kindergarten_participation]
+    @information = Hash.new
+    organize_data(data[:data])
+  end
+
+  def organize_data(data)
+    data.each do |row|
+      if @information[row[:source]]
+        @information[row[:source]][row[:timeframe].to_i] = row[:data].to_f
+      else
+        @information[row[:source]] = {row[:timeframe].to_i => row[:data].to_f}
+      end
+    end
   end
 
   def kindergarten_participation_by_year
-    @participation.each do |year, rate|
-      @participation[year] = rate.to_s[0..4].to_f
+    @information.each do |year, rate|
+      @information[year] = rate.to_s[0..4].to_f
     end
-    @participation
+    @information
   end
 
   def kindergarten_participation_in_year(year)
-    if @participation[year].nil?
+    if @information[year].nil?
       nil
     else
-      @participation[year].to_s[0..4].to_f
+      @information[year].to_s[0..4].to_f
     end
   end
 
