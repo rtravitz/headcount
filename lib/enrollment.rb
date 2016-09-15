@@ -40,4 +40,18 @@ class Enrollment
     end
   end
 
+  def graduation_rate_by_year
+    @information[:high_school_graduation].each do |year,rate|
+      @information[:high_school_graduation][year] = rate.round(3)
+    end
+    @information[:high_school_graduation]
+  end
+
+  def graduation_rate_in_year(year)
+    if @information[:high_school_graduation][year].nil?
+      nil
+    else
+      @information[:high_school_graduation][year].round(3)
+    end
+  end
 end
