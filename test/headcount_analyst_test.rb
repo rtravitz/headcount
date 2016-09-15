@@ -53,4 +53,21 @@ class HeadcountAnalystTest < Minitest::Test
     assert_in_delta 0.800, ha.kindergarten_participation_against_high_school_graduation('STEAMBOAT SPRINGS RE-2'), 0.005
   end
 
+  def test_kindergarten_participation_correlates_with_high_school_graduation
+    ha = HeadcountAnalyst.new(@dr)
+    action = ha.kindergarten_participation_correlates_with_high_school_graduation(for: 'ACADEMY 20')
+
+    assert action
+
+    action2 = ha.kindergarten_participation_correlates_with_high_school_graduation(:for => 'STATEWIDE')
+
+    refute action2
+
+
+    action3 = ha.kindergarten_participation_correlates_with_high_school_graduation(
+    :across => ["ACADEMY 20", 'PARK (ESTES PARK) R-3', 'YUMA SCHOOL DISTRICT 1']
+    )
+
+    assert action3
+  end
 end
