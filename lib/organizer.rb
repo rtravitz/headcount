@@ -12,4 +12,14 @@ module Organizer
     information[:name] = data.first[:location].upcase
     information
   end
+
+  def self.check_kindergarten(information)
+    information.delete(:name)
+    if information.keys.include?(:kindergarten_participation)
+      information[:kindergarten] = information[:kindergarten_participation]
+      information.delete(:kindergarten_participation)
+    end
+    information
+  end
+
 end

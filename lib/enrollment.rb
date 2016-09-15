@@ -1,19 +1,14 @@
+require_relative 'organizer'
+
 class Enrollment
+  include Organizer
+
   attr_accessor :information
   attr_reader :name
 
   def initialize(data)
     @name = data[:name]
-    data.delete(:name)
-    @information = data
-    check_kindergarten
-  end
-
-  def check_kindergarten
-    if @information.keys.include?(:kindergarten_participation)
-      @information[:kindergarten] = @information[:kindergarten_participation]
-      @information.delete(:kindergarten_participation)
-    end
+    @information = Organizer.check_kindergarten(data)
   end
 
   def kindergarten_participation_by_year
