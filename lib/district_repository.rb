@@ -17,7 +17,7 @@ class DistrictRepository
     contents = Loader.load_data(path)
     contents.each do |row|
       unless location_exists?(row[:location])
-        @repository[row[:location].upcase] = District.new({name: row[:location].upcase})
+        @repository[row[:location].upcase] = District.new({name: row[:location].upcase}, self)
       end
     end
     associate_enrollments_and_districts
@@ -27,6 +27,10 @@ class DistrictRepository
     @repository.each do |name, district|
       district.enrollment = @enrollment_repo.find_by_name(name)
     end
+  end
+
+  def find_enrollment(name)
+    @enrollment_repo.find_by_name(name)
   end
 
   def location_exists?(location)

@@ -24,7 +24,7 @@ class EnrollmentRepository
 
   def get_all_data(path)
     result = path[:enrollment].map do |level, file|
-      contents = Loader.load_data(path).map(&:to_h)
+      contents = Loader.load_data(file).map(&:to_h)
       contents.map do |row|
         row[:source] = level
         row

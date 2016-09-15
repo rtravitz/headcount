@@ -1,5 +1,5 @@
 class Enrollment
-  attr_accessor :participation
+  attr_accessor :information
   attr_reader :name
 
   def initialize(data)
@@ -11,25 +11,25 @@ class Enrollment
   def organize_data(data)
     data.each do |row|
       if @information[row[:source]]
-        @information[row[:source]][row[:timeframe].to_i] = row[:data].to_f
+        @information[row[:source]][row[:timeframe].to_i] = row[:data].to_f.round(3)
       else
-        @information[row[:source]] = {row[:timeframe].to_i => row[:data].to_f}
+        @information[row[:source]] = {row[:timeframe].to_i => row[:data].to_f.round(3)}
       end
     end
   end
 
   def kindergarten_participation_by_year
-    @information.each do |year, rate|
-      @information[year] = rate.to_s[0..4].to_f
+    @information[:kindergarten].each do |year, rate|
+      @information[:kindergarten][year] = rate.to_s[0..4].to_f
     end
-    @information
+    @information[:kindergarten]
   end
 
   def kindergarten_participation_in_year(year)
-    if @information[year].nil?
+    if @information[:kindergarten][year].nil?
       nil
     else
-      @information[year].to_s[0..4].to_f
+      @information[:kindergarten][year].to_s[0..4].to_f
     end
   end
 
