@@ -15,7 +15,7 @@ class DistrictRepository
   def load_data(path)
     @enrollment_repo.load_data(path)
     path[:enrollment].each do |level, file_path|
-      contents = Loader.load_data(file_path)
+      contents = Loader.parse_csv(file_path)
       contents.each do |row|
         unless location_exists?(row[:location])
           @repository[row[:location].upcase] = District.new({name: row[:location].upcase}, self)
