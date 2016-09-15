@@ -43,24 +43,42 @@ class HeadcountAnalyst
   end
 
   def kindergarten_participation_correlates_with_high_school_graduation(command)
-    if command.has_key?(:for) && command.has_value?('STATEWIDE')
-      values = @dr.repository.map do |name, district|
-        return_check(kindergarten_participation_against_high_school_graduation(name))
-      end
-      grouped = values.group_by{|boolean| boolean}
-      return true if (grouped[true].count / values.count) >= 0.7
-      return false
-    elsif command.has_key?(:for)
-      value = kindergarten_participation_against_high_school_graduation(command[:for])
-      return_check(value)
-    else
-      values = command[:across].map do |name|
-        return_check(kindergarten_participation_against_high_school_graduation(name.upcase))
-      end
-      grouped = values.group_by{|boolean| boolean}
-      return true if (grouped[true].count / values.count) >= 0.7
-      return false      
+    return check_statewide               if statewide?(command)
+    return check_one_district(command)   if one_district?(command)
+    return check_multi_district(command) if multi_district?(command)
+  end
+
+  def check_statewide
+    values = @dr.repository.map do |name, district|
+      return_check(kindergarten_participation_against_high_school_graduation(name))
     end
+    grouped = values.group_by{|boolean| boolean}
+    (grouped[true].count / values.count) >= 0.7 ? true : false
+  end
+
+  def check_one_district(command)
+    value = kindergarten_participation_against_high_school_graduation(command[:for])
+    return_check(value)
+  end
+
+  def check_multi_district(command)
+    values = command[:across].map do |name|
+      return_check(kindergarten_participation_against_high_school_graduation(name.upcase))
+    end
+    grouped = values.group_by{|boolean| boolean}
+    (grouped[true].count / values.count) >= 0.7 ? true : false
+  end
+
+  def statewide?(command)
+    command.has_value?('STATEWIDE')
+  end
+
+  def one_district?(command)
+    command.has_key?(:for) && !command.has_value?('STATEWIDE')
+  end
+
+  def multi_district?(command)
+    !command.has_key?(:for) && !command.has_value?('STATEWIDE')
   end
 
   def return_check(value)
