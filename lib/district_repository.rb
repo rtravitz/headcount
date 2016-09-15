@@ -22,13 +22,6 @@ class DistrictRepository
         end
       end
     end
-    associate_enrollments_and_districts
-  end
-
-  def associate_enrollments_and_districts
-    @repository.each do |name, district|
-      district.enrollment = @enrollment_repo.find_by_name(name)
-    end
   end
 
   def find_enrollment(name)
