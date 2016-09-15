@@ -18,7 +18,7 @@ class EnrollmentRepository
 
   def fill_enrollments(grouped_data)
     grouped_data.each do |name, data|
-      @repository[name] = Enrollment.new({name: name, data: data})
+      @repository[name.upcase] = Enrollment.new({name: name.upcase, data: data})
     end
   end
 
