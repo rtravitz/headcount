@@ -4,24 +4,15 @@ class Enrollment
 
   def initialize(data)
     @name = data[:name]
-    @information = Hash.new
-    organize_data(data)
+    data.delete(:name)
+    @information = data
+    check_kindergarten
   end
 
-  def organize_data(data)
-    if data.keys.include?(:data)
-      data = data[:data]
-    else
-      data.delete(:name)
-      return @information[:kindergarten] = data[:kindergarten_participation]
-    end
-
-    data.each do |row|
-      if @information[row[:source]]
-        @information[row[:source]][row[:timeframe].to_i] = row[:data].to_f.round(3)
-      else
-        @information[row[:source]] = {row[:timeframe].to_i => row[:data].to_f.round(3)}
-      end
+  def check_kindergarten
+    if @information.keys.include?(:kindergarten_participation)
+      @information[:kindergarten] = @information[:kindergarten_participation]
+      @information.delete(:kindergarten_participation)
     end
   end
 

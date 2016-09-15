@@ -1,8 +1,10 @@
 require_relative 'enrollment'
 require_relative 'loader'
+require_relative 'organizer'
 
 class EnrollmentRepository
   include Loader
+  include Organizer
 
   attr_reader :repository
 
@@ -13,12 +15,9 @@ class EnrollmentRepository
   def load_data(path)
     all_data = get_all_data(path)
     grouped_data = all_data.group_by{|item| item[:location]}
-    fill_enrollments(grouped_data)
-  end
-
-  def fill_enrollments(grouped_data)
     grouped_data.each do |name, data|
-      @repository[name.upcase] = Enrollment.new({name: name.upcase, data: data})
+      organized_data = Organizer.organize_data(data)
+      @repository[name.upcase] = Enrollment.new(organized_data)
     end
   end
 
