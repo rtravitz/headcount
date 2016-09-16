@@ -20,4 +20,8 @@ class StatewideTestingRepository
     end
   end
 
+  def find_by_name(name)
+    @repository[name.upcase]
+  end
+
 end
