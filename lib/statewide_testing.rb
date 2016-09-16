@@ -6,8 +6,7 @@ class StatewideTesting
   attr_reader :name, :information
 
   def initialize(data)
-    binding.pry
-    @name = data[:name]
+    # @name = data[:name]
     @information = data
   end
 

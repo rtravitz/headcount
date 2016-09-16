@@ -26,27 +26,9 @@ module Organizer
     information = Hash.new
     data.each do |row|
       if third_or_eighth_grade?(row)
-        level = check_grade_depth(information, row)
-        case level
-        when 1
-          information[row[:score].downcase.to_sym] = {row[:source] => {row[:timeframe] => row[:data]}}
-        when 2
-          information[row[:score].downcase.to_sym][row[:source]] = {row[:timeframe] => row[:data]}
-        when 3
-          information[row[:score].downcase_to_sym][row[:source]][row[:timeframe]] = row[:data]
-        when 4
-        end
+        information[row[:score].downcase.to_sym] = {row[:source] => {row[:timeframe] => row[:data]}}
       else
-        level = check_race_depth(information, row)
-        case level
-        when 1
-          information[row[:source]] = {row[:race_ethnicity] => {row[:timeframe] => row[:data]}}
-        when 2
-          information[row[:source]][row[:race_ethnicity]] = {row[:timeframe] => row[:data]}
-        when 3
-          information[row[:source]][row[:race_ethnicity]][row[:timeframe]] = row[:data]
-        when 4
-        end
+        information[row[:source]] = {row[:race_ethnicity] => {row[:timeframe] => row[:data]}}
       end
     end
     information[:name] = data.first[:location].upcase
@@ -55,30 +37,6 @@ module Organizer
 
   def self.third_or_eighth_grade?(row)
     row[:source] == :third_grade || row[:source] == :eighth_grade
-  end
-
-  def self.check_grade_depth(information, row)
-    level = 1
-    information[row[:score].downcase.to_sym] != nil ? level += 1 : level
-    information[row[:score].downcase.to_sym][row[:source]] != nil ? level += 1 : level
-    information[row[:score].downcase.to_sym][row[:source]][row[:timeframe]] != nil ? level += 1 : level
-    level
-    # return 4 if information[row[:score].downcase.to_sym][row[:source]][row[:timeframe]]
-    # return 3 if information[row[:score].downcase.to_sym][row[:source]]
-    # return 2 if information[row[:score].downcase.to_sym]
-    # return 1
-  end
-
-  def self.check_race_depth(information, row)
-    level = 1
-    information[row[:source]] !=  nil ? level += 1 : level
-    information[row[:source]][row[:race_ethnicity]] != nil ? level += 1 : level
-    information[row[:source]][row[:race_ethnicity]][row[:timeframe]] != nil ? level += 1 : level
-    level
-    # return 4 if information[row[:source]][row[:race_ethnicity]][row[:timeframe]]
-    # return 3 if information[row[:source]][row[:race_ethnicity]]
-    # return 2 if information[row[:source]]
-    # return 1
   end
 
 end

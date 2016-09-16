@@ -1,7 +1,6 @@
 require_relative 'loader'
 require_relative 'organizer'
 require_relative 'statewide_testing'
-require 'pry'
 
 class StatewideTestingRepository
 
@@ -17,7 +16,7 @@ class StatewideTestingRepository
     grouped_data = Loader.load_data(path)
     grouped_data.each do |name, data|
       organized_data = Organizer.organize_statewide_testing_data(data)
-      binding.pry
+      require "pry"; binding.pry
       @repository[name.upcase] = StatewideTesting.new(data)
     end
   end

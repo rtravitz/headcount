@@ -1,8 +1,7 @@
 {
   "Unit Tests": {
     "coverage": {
-      "/Users/blackknight_75/turing/1module/Projects/headcount/lib/statewide_testing_repository.rb": [
-        1,
+      "/Users/rtravitz/turing/1module/projects/headcount/lib/statewide_testing_repository.rb": [
         1,
         1,
         1,
@@ -21,14 +20,14 @@
         1,
         1,
         1,
-        0,
+        1,
         0,
         null,
         null,
         null,
         null
       ],
-      "/Users/blackknight_75/turing/1module/Projects/headcount/lib/loader.rb": [
+      "/Users/rtravitz/turing/1module/projects/headcount/lib/loader.rb": [
         1,
         null,
         1,
@@ -67,7 +66,7 @@
         null,
         null
       ],
-      "/Users/blackknight_75/turing/1module/Projects/headcount/lib/organizer.rb": [
+      "/Users/rtravitz/turing/1module/projects/headcount/lib/organizer.rb": [
         1,
         null,
         1,
@@ -95,32 +94,10 @@
         1,
         1,
         1,
-        1,
-        1,
-        0,
+        138,
+        42,
         null,
-        0,
-        null,
-        0,
-        null,
-        0,
-        null,
-        null,
-        null,
-        0,
-        0,
-        null,
-        0,
-        null,
-        0,
-        null,
-        0,
-        null,
-        null,
-        null,
-        null,
-        0,
-        0,
+        96,
         null,
         null,
         1,
@@ -128,32 +105,12 @@
         null,
         null,
         1,
-        1,
-        1,
-        1,
-        0,
-        0,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        null,
-        null,
-        null,
-        null,
+        138,
         null,
         null,
         null
       ],
-      "/Users/blackknight_75/turing/1module/Projects/headcount/lib/statewide_testing.rb": [
+      "/Users/rtravitz/turing/1module/projects/headcount/lib/statewide_testing.rb": [
         1,
         null,
         1,
@@ -162,14 +119,13 @@
         1,
         null,
         1,
-        0,
-        0,
+        null,
         0,
         null,
         null,
         null
       ]
     },
-    "timestamp": 1473989124
+    "timestamp": 1473992967
   }
 }
