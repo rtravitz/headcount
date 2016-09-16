@@ -39,4 +39,28 @@ class StatewideTestTest < Minitest::Test
     assert_in_delta expected[2013][:reading], district.proficient_by_grade(3)[2013][:reading], 0.005
   end
 
+  def test_proficient_by_race_or_ethnicity
+    str = StatewideTestingRepository.new
+    str.load_data({
+      :statewide_testing => {
+        :third_grade => "./test/fixtures/3rd grade students scoring proficient or above on the CSAP_TCAP.csv",
+        :eighth_grade => "./test/fixtures/8th grade students scoring proficient or above on the CSAP_TCAP.csv",
+        :math => "./test/fixtures/Average proficiency on the CSAP_TCAP by race_ethnicity_ Math.csv",
+        :reading => "./test/fixtures/Average proficiency on the CSAP_TCAP by race_ethnicity_ Reading.csv",
+        :writing => "./test/fixtures/Average proficiency on the CSAP_TCAP by race_ethnicity_ Writing.csv"
+      }
+    })
+
+    statewide_test = str.find_by_name("ACADEMY 20")
+    expected =   { 2011 => {math: 0.816, reading: 0.897, writing: 0.826},
+       2012 => {math: 0.818, reading: 0.893, writing: 0.808},
+       2013 => {math: 0.805, reading: 0.901, writing: 0.810},
+       2014 => {math: 0.800, reading: 0.855, writing: 0.789},
+     }
+     result = statewide_test.proficient_by_race_or_ethnicity(:asian)
+
+
+     assert_in_delta expected[2011][:math], result[2011][:math], 0.005
+     assert_in_delta expected[2014][:reading], result[2014][:reading], 0.005
+  end
 end

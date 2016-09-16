@@ -45,6 +45,4 @@ class StatewideTestingRepositoryTest < Minitest::Test
     assert_equal "ACADEMY 20", statewide.name
     assert_instance_of StatewideTest, statewide
   end
-
-
 end
