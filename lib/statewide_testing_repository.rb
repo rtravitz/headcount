@@ -17,6 +17,7 @@ class StatewideTestingRepository
     grouped_data = Loader.load_data(path)
     grouped_data.each do |name, data|
       organized_data = Organizer.organize_statewide_testing_data(data)
+      binding.pry
       @repository[name.upcase] = StatewideTesting.new(data)
     end
   end
