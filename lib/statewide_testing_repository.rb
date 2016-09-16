@@ -1,11 +1,11 @@
 require_relative 'loader'
 require_relative 'organizer'
-require_relative 'statewide_testing'
+require_relative 'statewide_test'
 
 class StatewideTestingRepository
   include Loader
   include Organizer
-  
+
   attr_reader :repository
 
   def initialize
@@ -16,7 +16,7 @@ class StatewideTestingRepository
     grouped_data = Loader.load_data(path)
     grouped_data.each do |name, data|
       organized_data = Organizer.organize_statewide_testing_data(data)
-      @repository[name.upcase] = StatewideTesting.new(organized_data)
+      @repository[name.upcase] = StatewideTest.new(organized_data)
     end
   end
 

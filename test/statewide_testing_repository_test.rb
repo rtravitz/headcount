@@ -1,6 +1,5 @@
 require './test/test_helper'
 require './lib/statewide_testing_repository'
-require 'pry'
 
 class StatewideTestingRepositoryTest < Minitest::Test
 
@@ -25,7 +24,7 @@ class StatewideTestingRepositoryTest < Minitest::Test
 
     statewide = str.repository["COLORADO"]
 
-    assert_instance_of StatewideTesting, statewide
+    assert_instance_of StatewideTest, statewide
     assert_equal "COLORADO", statewide.name
   end
 
@@ -44,7 +43,7 @@ class StatewideTestingRepositoryTest < Minitest::Test
     statewide = str.find_by_name("ACADEMY 20")
 
     assert_equal "ACADEMY 20", statewide.name
-    assert_instance_of StatewideTesting, statewide
+    assert_instance_of StatewideTest, statewide
   end
 
 

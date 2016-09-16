@@ -1,6 +1,6 @@
 require_relative 'organizer'
 
-class StatewideTesting
+class StatewideTest
   include Organizer
 
   attr_reader :name, :information
