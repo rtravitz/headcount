@@ -3,9 +3,9 @@ require_relative 'organizer'
 require_relative 'statewide_testing'
 
 class StatewideTestingRepository
-
   include Loader
   include Organizer
+  
   attr_reader :repository
 
   def initialize
