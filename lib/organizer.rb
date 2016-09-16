@@ -23,20 +23,9 @@ module Organizer
   end
 
   def self.organize_statewide_testing_data(data)
-    information = Hash.new
-    data.each do |row|
-      if third_or_eighth_grade?(row)
-        information[row[:score].downcase.to_sym] = {row[:source] => {row[:timeframe] => row[:data]}}
-      else
-        information[row[:source]] = {row[:race_ethnicity] => {row[:timeframe] => row[:data]}}
-      end
-    end
-    information[:name] = data.first[:location].upcase
-    information
-  end
-
-  def self.third_or_eighth_grade?(row)
-    row[:source] == :third_grade || row[:source] == :eighth_grade
+    grouped = data.group_by{|row| row[:source]}
+    grouped[:name] = data.first[:location].upcase
+    grouped
   end
 
 end

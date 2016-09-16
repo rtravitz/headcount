@@ -6,7 +6,8 @@ class StatewideTesting
   attr_reader :name, :information
 
   def initialize(data)
-    # @name = data[:name]
+    @name = data[:name]
+    data.delete(:name)
     @information = data
   end
 
