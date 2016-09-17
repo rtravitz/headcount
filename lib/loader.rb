@@ -33,5 +33,11 @@ module Loader
     return :economic_profile if path.has_key?(:economic_profile)
   end
 
+  def self.extract_paths(path)
+    path[:enrollment] ? enrollment = {:enrollment => path[:enrollment]} : nil
+    path[:statewide_testing] ? statewide = {:statewide_testing => path[:statewide_testing]} : nil
+    path[:economic_profile] ? economic = {:economic_profile => path[:economic_profile]} : nil
+    {enrollment: enrollment, statewide: statewide, economic: economic}
+  end
 
 end

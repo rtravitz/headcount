@@ -15,17 +15,10 @@ class DistrictRepository
   end
 
   def load_data(path)
-    paths = extract_paths(path)
+    paths = Loader.extract_paths(path)
     @enrollment_repo.load_data(paths[:enrollment]) unless paths[:enrollment].nil?
     @statewide_repo.load_data(paths[:statewide]) unless paths[:statewide].nil?
     create_districts(paths[:enrollment])
-  end
-
-  def extract_paths(path)
-    path[:enrollment] ? enrollment = {:enrollment => path[:enrollment]} : nil
-    path[:statewide_testing] ? statewide = {:statewide_testing => path[:statewide_testing]} : nil
-    path[:economic_profile] ? economic = {:economic_profile => path[:economic_profile]} : nil
-    {enrollment: enrollment, statewide: statewide, economic: economic}
   end
 
   def create_districts(path)
