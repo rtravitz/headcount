@@ -2,7 +2,7 @@ require_relative 'loader'
 require_relative 'organizer'
 require_relative 'statewide_test'
 
-class StatewideTestingRepository
+class StatewideTestRepository
   include Loader
   include Organizer
 

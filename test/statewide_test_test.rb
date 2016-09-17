@@ -1,11 +1,11 @@
 require './test/test_helper'
 require './lib/statewide_test'
-require './lib/statewide_testing_repository'
+require './lib/statewide_test_repository'
 
 class StatewideTestTest < Minitest::Test
 
   def setup
-    @str = StatewideTestingRepository.new
+    @str = StatewideTestRepository.new
     @str.load_data({
       :statewide_testing => {
         :third_grade => "./test/fixtures/3rd grade students scoring proficient or above on the CSAP_TCAP.csv",

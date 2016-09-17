@@ -1,16 +1,16 @@
 require './test/test_helper'
-require './lib/statewide_testing_repository'
+require './lib/statewide_test_repository'
 
-class StatewideTestingRepositoryTest < Minitest::Test
+class StatewideTestRepositoryTest < Minitest::Test
 
   def test_statewide_test_repository_exists
-    str = StatewideTestingRepository.new
+    str = StatewideTestRepository.new
 
-    assert_instance_of StatewideTestingRepository, str
+    assert_instance_of StatewideTestRepository, str
   end
 
   def test_statewide_repo_makes_statewides_from_csv
-    str = StatewideTestingRepository.new
+    str = StatewideTestRepository.new
     str.load_data({
       :statewide_testing => {
         :third_grade => "./test/fixtures/3rd grade students scoring proficient or above on the CSAP_TCAP.csv",
@@ -29,7 +29,7 @@ class StatewideTestingRepositoryTest < Minitest::Test
   end
 
   def test_statewide_repository_find_by_name
-    str = StatewideTestingRepository.new
+    str = StatewideTestRepository.new
     str.load_data({
       :statewide_testing => {
         :third_grade => "./test/fixtures/3rd grade students scoring proficient or above on the CSAP_TCAP.csv",
