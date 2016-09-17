@@ -49,4 +49,14 @@ class StatewideTest
     options.include?(race) ? true : false
   end
 
+  def proficient_for_subject_by_grade_in_year(subject, grade, year)
+    table = proficient_by_grade(grade)
+    table[year][subject]
+  end
+
+  def proficient_for_subject_by_race_in_year(subject, race, year)
+    table = proficient_by_race_or_ethnicity(race)
+    table[year][subject]
+  end
+
 end
