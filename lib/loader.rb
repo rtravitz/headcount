@@ -4,7 +4,7 @@ module Loader
 
   def self.load_data(path)
     all_data = get_all_data(path)
-    grouped_data = group_data(all_data)
+    group_data(all_data)
   end
 
   def self.parse_csv(path)

@@ -48,7 +48,6 @@ class HeadcountAnalystTest < Minitest::Test
 
   def test_kindergarten_participation_against_hs_graduation
     ha = HeadcountAnalyst.new(@dr)
-    action = ha.kindergarten_participation_against_high_school_graduation('ACADEMY 20')
     assert_in_delta 0.548, ha.kindergarten_participation_against_high_school_graduation('MONTROSE COUNTY RE-1J'), 0.005
     assert_in_delta 0.800, ha.kindergarten_participation_against_high_school_graduation('STEAMBOAT SPRINGS RE-2'), 0.005
   end

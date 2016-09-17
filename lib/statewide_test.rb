@@ -22,7 +22,7 @@ class StatewideTest
     subjects = [:math, :reading, :writing]
     if race_check(race)
       sorted = subjects.map do |subject|
-        data = @information[subject].select do |row|
+        @information[subject].select do |row|
           row[:race_ethnicity].downcase == race.to_s
         end
       end.flatten
@@ -45,7 +45,8 @@ class StatewideTest
   end
 
   def race_check(race)
-    options = [:asian, :black, :pacific_islander, :hispanic, :native_american, :two_or_more, :white]
+    options = [ :asian, :black, :pacific_islander, :hispanic,
+                :native_american, :two_or_more, :white  ]
     options.include?(race) ? true : false
   end
 

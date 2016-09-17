@@ -52,6 +52,6 @@ class DistrictRepository
    @repository.select do |name, district|
      district if name.include?(fragment.upcase)
    end.values
- end
+  end
 
 end
