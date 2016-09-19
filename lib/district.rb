@@ -16,4 +16,9 @@ class District
   def statewide_test
     @dr.find_statewide_test(@name)
   end
+
+  def economic_profile
+    @dr.find_economic_profile(@name)
+  end
+  
 end

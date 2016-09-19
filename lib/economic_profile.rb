@@ -10,7 +10,6 @@ class EconomicProfile
 
   def initialize(data)
     @name = data[:name]
-    data.delete(:name)
     @information = data
   end
 

@@ -2,6 +2,7 @@ require_relative 'loader'
 require_relative 'district'
 require_relative 'enrollment_repository'
 require_relative 'statewide_test_repository'
+require_relative 'economic_profile_repository'
 
 class DistrictRepository
   include Loader
@@ -12,12 +13,14 @@ class DistrictRepository
     @repository = Hash.new
     @enrollment_repo = EnrollmentRepository.new
     @statewide_repo = StatewideTestRepository.new
+    @economic_repo = EconomicProfileRepository.new
   end
 
   def load_data(path)
     paths = Loader.extract_paths(path)
     @enrollment_repo.load_data(paths[:enrollment]) unless paths[:enrollment].nil?
     @statewide_repo.load_data(paths[:statewide]) unless paths[:statewide].nil?
+    @economic_repo.load_data(paths[:economic_profile]) unless path[:economic_profile].nil?
     create_districts(paths[:enrollment])
   end
 
@@ -38,6 +41,10 @@ class DistrictRepository
 
   def find_statewide_test(name)
     @statewide_repo.find_by_name(name)
+  end
+
+  def find_economic_profile(name)
+    @economic_repo.find_by_name(name)
   end
 
   def location_exists?(location)
