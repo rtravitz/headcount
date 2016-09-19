@@ -14,27 +14,27 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2016-09-19T13:05:26-06:00">2016-09-19T13:05:26-06:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2016-09-19T13:28:03-06:00">2016-09-19T13:28:03-06:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">76.72%</span></span>
+    (<span class="covered_percent"><span class="red">38.33%</span></span>
      covered at
      <span class="covered_strength">
-       <span class="green">
-         9.44
+       <span class="red">
+         0.42
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>6</b> files in total.
-    <b>116</b> relevant lines. 
-    <span class="green"><b>89</b> lines covered</span> and
-    <span class="red"><b>27</b> lines missed </span>
+    <b>120</b> relevant lines. 
+    <span class="green"><b>46</b> lines covered</span> and
+    <span class="red"><b>74</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -52,22 +52,22 @@
       
       <tr>
         <td class="strong"><a href="#9d6c7c8fc75c407a01613e67701dbd8ccdd5779a" class="src_link" title="lib/economic_profile.rb">lib/economic_profile.rb</a></td>
-        <td class="red strong">77.78 %</td>
-        <td>16</td>
-        <td>9</td>
-        <td>7</td>
-        <td>2</td>
-        <td>0.8</td>
+        <td class="green strong">100.0 %</td>
+        <td>27</td>
+        <td>14</td>
+        <td>14</td>
+        <td>0</td>
+        <td>1.2</td>
       </tr>
       
       <tr>
         <td class="strong"><a href="#9e9606dbc31d132063d221504c45dc8fb4875809" class="src_link" title="lib/economic_profile_repository.rb">lib/economic_profile_repository.rb</a></td>
-        <td class="yellow strong">88.24 %</td>
-        <td>29</td>
-        <td>17</td>
-        <td>15</td>
-        <td>2</td>
-        <td>0.9</td>
+        <td class="red strong">62.5 %</td>
+        <td>28</td>
+        <td>16</td>
+        <td>10</td>
+        <td>6</td>
+        <td>0.6</td>
       </tr>
       
       <tr>
@@ -82,22 +82,22 @@
       
       <tr>
         <td class="strong"><a href="#5e43731b85a07774f9fe8e30d495aa7db3162cbe" class="src_link" title="lib/loader.rb">lib/loader.rb</a></td>
-        <td class="yellow strong">84.62 %</td>
+        <td class="red strong">30.77 %</td>
         <td>43</td>
         <td>26</td>
-        <td>22</td>
-        <td>4</td>
-        <td>26.8</td>
+        <td>8</td>
+        <td>18</td>
+        <td>0.3</td>
       </tr>
       
       <tr>
         <td class="strong"><a href="#0bd9d5518438d08f147485de9d8c414c1a0996a7" class="src_link" title="lib/organizer.rb">lib/organizer.rb</a></td>
-        <td class="red strong">69.49 %</td>
+        <td class="red strong">16.95 %</td>
         <td>87</td>
         <td>59</td>
-        <td>41</td>
-        <td>18</td>
-        <td>6.3</td>
+        <td>10</td>
+        <td>49</td>
+        <td>0.2</td>
       </tr>
       
       <tr>
@@ -129,11 +129,11 @@
         <div class="source_table" id="9d6c7c8fc75c407a01613e67701dbd8ccdd5779a">
   <div class="header">
     <h3>lib/economic_profile.rb</h3>
-    <h4><span class="red">77.78 %</span> covered</h4>
+    <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>9</b> relevant lines. 
-      <span class="green"><b>7</b> lines covered</span> and
-      <span class="red"><b>2</b> lines missed.</span>
+      <b>14</b> relevant lines. 
+      <span class="green"><b>14</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
   
@@ -206,14 +206,14 @@
           <code class="ruby">  def initialize(data)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="12">
-          
+        <li class="covered" data-hits="2" data-linenumber="12">
+          <span class="hits">2</span>
           
           <code class="ruby">    @name = data[:name]</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="13">
-          
+        <li class="covered" data-hits="2" data-linenumber="13">
+          <span class="hits">2</span>
           
           <code class="ruby">    @information = data</code>
         </li>
@@ -233,6 +233,72 @@
         <li class="never" data-hits="" data-linenumber="16">
           
           
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="17">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def median_household_income_in_year(year)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="18">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    values = Array.new</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="19">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    @information[:median_household_income].each do |years, value|</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="20">
+          <span class="hits">2</span>
+          
+          <code class="ruby">      values &lt;&lt; value if (years.first..years.last).to_a.include?(year)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="21">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="22">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    values.reduce(:+) / values.count</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="23">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="24">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="25">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="26">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="27">
+          
+          
           <code class="ruby">end</code>
         </li>
       
@@ -243,11 +309,11 @@
         <div class="source_table" id="9e9606dbc31d132063d221504c45dc8fb4875809">
   <div class="header">
     <h3>lib/economic_profile_repository.rb</h3>
-    <h4><span class="yellow">88.24 %</span> covered</h4>
+    <h4><span class="red">62.5 %</span> covered</h4>
     <div>
-      <b>17</b> relevant lines. 
-      <span class="green"><b>15</b> lines covered</span> and
-      <span class="red"><b>2</b> lines missed.</span>
+      <b>16</b> relevant lines. 
+      <span class="green"><b>10</b> lines covered</span> and
+      <span class="red"><b>6</b> lines missed.</span>
     </div>
   </div>
   
@@ -326,8 +392,8 @@
           <code class="ruby">  def initialize</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="13">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="13">
+          
           
           <code class="ruby">    @repository = Hash.new</code>
         </li>
@@ -350,79 +416,73 @@
           <code class="ruby">  def load_data(path)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="17">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="17">
+          
           
           <code class="ruby">    grouped_data = Loader.load_data(path)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="18">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="18">
+          
           
           <code class="ruby">    grouped_data.each do |name, data|</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="19">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="19">
+          
           
           <code class="ruby">      organized_data = Organizer.organize_economic_data(data)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="20">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      require &quot;pry&quot;; binding.pry</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="21">
+        <li class="missed" data-hits="0" data-linenumber="20">
           
           
           <code class="ruby">      @repository[name.upcase] = EconomicProfile.new(organized_data)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="22">
+        <li class="never" data-hits="" data-linenumber="21">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="23">
+        <li class="never" data-hits="" data-linenumber="22">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="24">
+        <li class="never" data-hits="" data-linenumber="23">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="25">
+        <li class="covered" data-hits="1" data-linenumber="24">
           <span class="hits">1</span>
           
           <code class="ruby">  def find_by_name(name)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="26">
+        <li class="missed" data-hits="0" data-linenumber="25">
           
           
           <code class="ruby">    @repository[name.upcase]</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="27">
+        <li class="never" data-hits="" data-linenumber="26">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="28">
+        <li class="never" data-hits="" data-linenumber="27">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="29">
+        <li class="never" data-hits="" data-linenumber="28">
           
           
           <code class="ruby">end</code>
@@ -465,11 +525,11 @@
         <div class="source_table" id="5e43731b85a07774f9fe8e30d495aa7db3162cbe">
   <div class="header">
     <h3>lib/loader.rb</h3>
-    <h4><span class="yellow">84.62 %</span> covered</h4>
+    <h4><span class="red">30.77 %</span> covered</h4>
     <div>
       <b>26</b> relevant lines. 
-      <span class="green"><b>22</b> lines covered</span> and
-      <span class="red"><b>4</b> lines missed.</span>
+      <span class="green"><b>8</b> lines covered</span> and
+      <span class="red"><b>18</b> lines missed.</span>
     </div>
   </div>
   
@@ -506,14 +566,14 @@
           <code class="ruby">  def self.load_data(path)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="6">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="6">
+          
           
           <code class="ruby">    all_data = get_all_data(path)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="7">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="7">
+          
           
           <code class="ruby">    group_data(all_data)</code>
         </li>
@@ -536,8 +596,8 @@
           <code class="ruby">  def self.parse_csv(path)</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="11">
-          <span class="hits">4</span>
+        <li class="missed" data-hits="0" data-linenumber="11">
+          
           
           <code class="ruby">    CSV.open path, headers: true, header_converters: :symbol</code>
         </li>
@@ -560,38 +620,38 @@
           <code class="ruby">  def self.get_all_data(path)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="15">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="15">
+          
           
           <code class="ruby">    type = check_repo_type(path)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="16">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="16">
+          
           
           <code class="ruby">    result = path[type].map do |level, file|</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="17">
-          <span class="hits">4</span>
+        <li class="missed" data-hits="0" data-linenumber="17">
+          
           
           <code class="ruby">      contents = parse_csv(file).map(&amp;:to_h)</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="18">
-          <span class="hits">4</span>
+        <li class="missed" data-hits="0" data-linenumber="18">
+          
           
           <code class="ruby">      contents.map do |row|</code>
         </li>
       
-        <li class="covered" data-hits="223" data-linenumber="19">
-          <span class="hits">223</span>
+        <li class="missed" data-hits="0" data-linenumber="19">
+          
           
           <code class="ruby">        row[:source] = level</code>
         </li>
       
-        <li class="covered" data-hits="223" data-linenumber="20">
-          <span class="hits">223</span>
+        <li class="missed" data-hits="0" data-linenumber="20">
+          
           
           <code class="ruby">        row</code>
         </li>
@@ -608,8 +668,8 @@
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="23">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="23">
+          
           
           <code class="ruby">    result.flatten</code>
         </li>
@@ -632,8 +692,8 @@
           <code class="ruby">  def self.group_data(all_data)</code>
         </li>
       
-        <li class="covered" data-hits="224" data-linenumber="27">
-          <span class="hits">224</span>
+        <li class="missed" data-hits="0" data-linenumber="27">
+          
           
           <code class="ruby">    all_data.group_by{|item| item[:location]}</code>
         </li>
@@ -656,20 +716,20 @@
           <code class="ruby">  def self.check_repo_type(path)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="31">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="31">
+          
           
           <code class="ruby">    return :enrollment if path.has_key?(:enrollment)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="32">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="32">
+          
           
           <code class="ruby">    return :statewide_testing if path.has_key?(:statewide_testing)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="33">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="33">
+          
           
           <code class="ruby">    return :economic_profile if path.has_key?(:economic_profile)</code>
         </li>
@@ -741,11 +801,11 @@
         <div class="source_table" id="0bd9d5518438d08f147485de9d8c414c1a0996a7">
   <div class="header">
     <h3>lib/organizer.rb</h3>
-    <h4><span class="red">69.49 %</span> covered</h4>
+    <h4><span class="red">16.95 %</span> covered</h4>
     <div>
       <b>59</b> relevant lines. 
-      <span class="green"><b>41</b> lines covered</span> and
-      <span class="red"><b>18</b> lines missed.</span>
+      <span class="green"><b>10</b> lines covered</span> and
+      <span class="red"><b>49</b> lines missed.</span>
     </div>
   </div>
   
@@ -926,38 +986,38 @@
           <code class="ruby">  def self.organize_economic_data(data)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="30">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="30">
+          
           
           <code class="ruby">    organized = group_by_file(data)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="31">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="31">
+          
           
           <code class="ruby">    organized[:median_household_income] = clean_median_income(organized)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="32">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="32">
+          
           
           <code class="ruby">    organized[:children_in_poverty] = clean_children_in_poverty(organized)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="33">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="33">
+          
           
           <code class="ruby">    organized[:free_or_reduced_price_lunch] = clean_free_or_reduced_price_lunch(organized)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="34">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="34">
+          
           
           <code class="ruby">    organized[:title_i] = clean_title_i(organized)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="35">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="35">
+          
           
           <code class="ruby">    organized</code>
         </li>
@@ -980,20 +1040,20 @@
           <code class="ruby">  def self.group_by_file(data)</code>
         </li>
       
-        <li class="covered" data-hits="101" data-linenumber="39">
-          <span class="hits">101</span>
+        <li class="missed" data-hits="0" data-linenumber="39">
+          
           
           <code class="ruby">    grouped = data.group_by{|row| row[:source]}</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="40">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="40">
+          
           
           <code class="ruby">    grouped[:name] = data.first[:location].upcase</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="41">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="41">
+          
           
           <code class="ruby">    grouped</code>
         </li>
@@ -1016,38 +1076,38 @@
           <code class="ruby">  def self.clean_median_income(data)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="45">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="45">
+          
           
           <code class="ruby">    return nil unless data[:median_household_income]</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="46">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="46">
+          
           
           <code class="ruby">    collected = Hash.new</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="47">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="47">
+          
           
           <code class="ruby">    data[:median_household_income].each do |row|</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="48">
-          <span class="hits">5</span>
+        <li class="missed" data-hits="0" data-linenumber="48">
+          
           
           <code class="ruby">      years = row[:timeframe].split(&quot;-&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="15" data-linenumber="49">
-          <span class="hits">15</span>
+        <li class="missed" data-hits="0" data-linenumber="49">
+          
           
           <code class="ruby">      years.map!{|year| year.to_i}</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="50">
-          <span class="hits">5</span>
+        <li class="missed" data-hits="0" data-linenumber="50">
+          
           
           <code class="ruby">      collected[years] = row[:data].to_f</code>
         </li>
@@ -1058,8 +1118,8 @@
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="52">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="52">
+          
           
           <code class="ruby">    collected</code>
         </li>
@@ -1082,8 +1142,8 @@
           <code class="ruby">  def self.clean_children_in_poverty(data)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="56">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="56">
+          
           
           <code class="ruby">    return nil unless data[:children_in_poverty]</code>
         </li>
@@ -1142,50 +1202,50 @@
           <code class="ruby">  def self.clean_free_or_reduced_price_lunch(data)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="66">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="66">
+          
           
           <code class="ruby">    return nil unless data[:free_or_reduced_price_lunch]</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="67">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="67">
+          
           
           <code class="ruby">    collected = Hash.new</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="68">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="68">
+          
           
           <code class="ruby">    data[:free_or_reduced_price_lunch].each do |row|</code>
         </li>
       
-        <li class="covered" data-hits="90" data-linenumber="69">
-          <span class="hits">90</span>
+        <li class="missed" data-hits="0" data-linenumber="69">
+          
           
           <code class="ruby">      next unless row[:poverty_level] == &quot;Eligible for Free or Reduced Lunch&quot;</code>
         </li>
       
-        <li class="covered" data-hits="30" data-linenumber="70">
-          <span class="hits">30</span>
+        <li class="missed" data-hits="0" data-linenumber="70">
+          
           
           <code class="ruby">      year = row[:timeframe].to_i</code>
         </li>
       
-        <li class="covered" data-hits="30" data-linenumber="71">
-          <span class="hits">30</span>
+        <li class="missed" data-hits="0" data-linenumber="71">
+          
           
           <code class="ruby">      collected[year] = {row[:dataformat].downcase.to_sym =&gt; row[:data].to_f.round(3)} unless collected[year]</code>
         </li>
       
-        <li class="covered" data-hits="30" data-linenumber="72">
-          <span class="hits">30</span>
+        <li class="missed" data-hits="0" data-linenumber="72">
+          
           
           <code class="ruby">      collected[year][row[:dataformat].downcase.to_sym] = row[:data].to_f.round(3)</code>
         </li>
       
-        <li class="covered" data-hits="30" data-linenumber="73">
-          <span class="hits">30</span>
+        <li class="missed" data-hits="0" data-linenumber="73">
+          
           
           <code class="ruby">      collected[year][:total] = collected[year].delete(:number) if row[:dataformat] == &quot;Number&quot;</code>
         </li>
@@ -1196,8 +1256,8 @@
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="75">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="75">
+          
           
           <code class="ruby">    collected</code>
         </li>
@@ -1220,26 +1280,26 @@
           <code class="ruby">  def self.clean_title_i(data)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="79">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="79">
+          
           
           <code class="ruby">    return nil unless data[:title_i]</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="80">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="80">
+          
           
           <code class="ruby">    collected = Hash.new</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="81">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="81">
+          
           
           <code class="ruby">    data[:title_i].each do |row|</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="82">
-          <span class="hits">5</span>
+        <li class="missed" data-hits="0" data-linenumber="82">
+          
           
           <code class="ruby">      collected[row[:timeframe].to_i] = row[:data].to_f</code>
         </li>
@@ -1250,8 +1310,8 @@
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="84">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="84">
+          
           
           <code class="ruby">    collected</code>
         </li>
