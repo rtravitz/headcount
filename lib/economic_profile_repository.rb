@@ -17,6 +17,7 @@ class EconomicProfileRepository
     grouped_data = Loader.load_data(path)
     grouped_data.each do |name, data|
       organized_data = Organizer.organize_economic_data(data)
+      require "pry"; binding.pry
       @repository[name.upcase] = EconomicProfile.new(organized_data)
     end
   end
