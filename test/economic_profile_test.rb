@@ -17,6 +17,9 @@ class EconomicProfileTest < Minitest::Test
     ep = EconomicProfile.new(data)
 
     assert_equal 50000, ep.median_household_income_in_year(2015)
+    assert_raises(UnknownDataError) do
+      ep.median_household_income_in_year(2000)
+    end
   end
 
   def test_median_household_income_average
@@ -29,24 +32,36 @@ class EconomicProfileTest < Minitest::Test
     ep = EconomicProfile.new(data)
 
     assert_in_delta 0.184, ep.children_in_poverty_in_year(2012), 0.005
+    assert_raises(UnknownDataError) do
+      ep.children_in_poverty_in_year(2000)
+    end
   end
 
   def test_free_or_reduced_lunch_percentage_in_year
     ep = EconomicProfile.new(data)
 
     assert_in_delta 0.023, ep.free_or_reduced_price_lunch_percentage_in_year(2014), 0.005
+    assert_raises(UnknownDataError) do
+      ep.free_or_reduced_price_lunch_percentage_in_year(2000)
+    end
   end
 
   def test_free_or_reduced_lunch_number_in_year
     ep = EconomicProfile.new(data)
 
     assert_equal 100, ep.free_or_reduced_price_lunch_number_in_year(2014)
+    assert_raises(UnknownDataError) do
+      ep.free_or_reduced_price_lunch_number_in_year(2000)
+    end
   end
 
   def test_title_i_in_year
     ep = EconomicProfile.new(data)
 
     assert_in_delta 0.543, ep.title_i_in_year(2015), 0.005
+    assert_raises(UnknownDataError) do
+      ep.title_i_in_year(2000)
+    end
   end
 
   def data
