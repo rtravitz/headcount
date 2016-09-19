@@ -12,8 +12,8 @@ class DistrictRepositoryTest < Minitest::Test
   def test_class_starts_with_empty_repository
     dr = DistrictRepository.new
 
-    assert dr.repository.empty?
-    assert_instance_of Hash, dr.repository
+    assert dr.dr.empty?
+    assert_instance_of Hash, dr.dr
   end
 
   def test_load_data_creates_hash_of_districts
@@ -23,7 +23,7 @@ class DistrictRepositoryTest < Minitest::Test
       :kindergarten => "./test/fixtures/Kindergartners in full-day program.csv"
       }
     })
-    dr.repository.each do |name, district|
+    dr.dr.each do |name, district|
       assert_instance_of District, district
     end
   end

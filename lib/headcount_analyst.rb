@@ -8,15 +8,19 @@ class HeadcountAnalyst
 
   def kindergarten_participation_rate_variation(district, against)
     numerator = @dr.find_by_name(district.upcase).enrollment
+    numerator = numerator.kindergarten_participation_by_year.values
     denominator = @dr.find_by_name(against[:against]).enrollment
-    numerator_average = average(numerator.kindergarten_participation_by_year.values)
-    denominator_average = average(denominator.kindergarten_participation_by_year.values)
+    denominator = denominator.kindergarten_participation_by_year.values
+    numerator_average = average(numerator)
+    denominator_average = average(denominator)
     (numerator_average / denominator_average).round(3)
   end
 
   def kindergarten_participation_rate_variation_trend(district, against)
-    numerator = @dr.find_by_name(district.upcase).enrollment.kindergarten_participation_by_year
-    denominator = @dr.find_by_name(against[:against]).enrollment.kindergarten_participation_by_year
+    numerator = @dr.find_by_name(district.upcase).enrollment
+    numerator = numerator.kindergarten_participation_by_year
+    denominator = @dr.find_by_name(against[:against]).enrollment
+    denominator = denominator.kindergarten_participation_by_year
     result = Hash.new
     numerator.each do |year, rate|
       result[year] = (rate / denominator[year]).round(3)
@@ -37,9 +41,9 @@ class HeadcountAnalyst
   end
 
   def kindergarten_participation_against_high_school_graduation(name)
-    numerator = kindergarten_participation_rate_variation(name, against: "COLORADO")
+    numer = kindergarten_participation_rate_variation(name, against: "COLORADO")
     denominator = graduation_variation(name, against: "COLORADO")
-    (numerator / denominator).round(3)
+    (numer / denominator).round(3)
   end
 
   def kindergarten_participation_correlates_with_high_school_graduation(command)
@@ -49,21 +53,24 @@ class HeadcountAnalyst
   end
 
   def check_statewide
-    values = @dr.repository.map do |name, district|
-      return_check(kindergarten_participation_against_high_school_graduation(name))
+    values = @dr.dr.map do |name, district|
+      item = kindergarten_participation_against_high_school_graduation(name)
+      return_check(item)
     end
     grouped = values.group_by{|boolean| boolean}
     (grouped[true].count / values.count) >= 0.7 ? true : false
   end
 
   def check_one_district(command)
-    value = kindergarten_participation_against_high_school_graduation(command[:for])
+    c = command[:for]
+    value = kindergarten_participation_against_high_school_graduation(c)
     return_check(value)
   end
 
   def check_multi_district(command)
     values = command[:across].map do |name|
-      return_check(kindergarten_participation_against_high_school_graduation(name.upcase))
+      v = kindergarten_participation_against_high_school_graduation(name.upcase)
+      return_check(v)
     end
     grouped = values.group_by{|boolean| boolean}
     (grouped[true].count / values.count) >= 0.7 ? true : false

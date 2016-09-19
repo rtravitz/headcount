@@ -34,9 +34,12 @@ module Loader
   end
 
   def self.extract_paths(path)
-    path[:enrollment] ? enrollment = {:enrollment => path[:enrollment]} : nil
-    path[:statewide_testing] ? statewide = {:statewide_testing => path[:statewide_testing]} : nil
-    path[:economic_profile] ? economic = {:economic_profile => path[:economic_profile]} : nil
+    enrollment_return = {:enrollment => path[:enrollment]}
+    statewide_return = {:statewide_testing => path[:statewide_testing]}
+    economic_return = {:economic_profile => path[:economic_profile]}
+    path[:enrollment] ? enrollment = enrollment_return : nil
+    path[:statewide_testing] ? statewide = statewide_return : nil
+    path[:economic_profile] ? economic = economic_return : nil
     {enrollment: enrollment, statewide: statewide, economic: economic}
   end
 

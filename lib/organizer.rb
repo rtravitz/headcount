@@ -30,7 +30,7 @@ module Organizer
     organized = group_by_file(data)
     organized[:median_household_income] = clean_median_income(organized)
     organized[:children_in_poverty] = clean_children_in_poverty(organized)
-    organized[:free_or_reduced_price_lunch] = clean_free_or_reduced_price_lunch(organized)
+    organized[:free_or_reduced_price_lunch] = clean_lunch(organized)
     organized[:title_i] = clean_title_i(organized)
     organized
   end
@@ -62,7 +62,7 @@ module Organizer
     collected
   end
 
-  def self.clean_free_or_reduced_price_lunch(data)
+  def self.clean_lunch(data)
     return nil unless data[:free_or_reduced_price_lunch]
     collected = Hash.new
     data[:free_or_reduced_price_lunch].each do |row|
