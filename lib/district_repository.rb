@@ -7,7 +7,7 @@ require_relative 'economic_profile_repository'
 class DistrictRepository
   include Loader
 
-  attr_reader :repository, :enrollment_repo
+  attr_reader :repository
 
   def initialize
     @repository = Hash.new

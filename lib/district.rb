@@ -1,7 +1,6 @@
 require_relative './enrollment_repository'
 
 class District
-  attr_accessor :enrollment
   attr_reader :name
 
   def initialize(data, district_repository = nil)
@@ -20,5 +19,5 @@ class District
   def economic_profile
     @dr.find_economic_profile(@name)
   end
-  
+
 end
