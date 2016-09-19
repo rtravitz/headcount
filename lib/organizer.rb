@@ -31,6 +31,7 @@ module Organizer
     organized[:median_household_income] = clean_median_income(organized)
     organized[:children_in_poverty] = clean_children_in_poverty(organized)
     organized[:free_or_reduced_price_lunch] = clean_free_or_reduced_price_lunch(organized)
+    organized[:title_i] = clean_title_i(organized)
     organized
   end
 
@@ -41,6 +42,7 @@ module Organizer
   end
 
   def self.clean_median_income(data)
+    return nil unless data[:median_household_income]
     collected = Hash.new
     data[:median_household_income].each do |row|
       years = row[:timeframe].split("-")
@@ -72,6 +74,13 @@ module Organizer
     collected
   end
 
-
+  def self.clean_title_i(data)
+    return nil unless data[:title_i]
+    collected = Hash.new
+    data[:title_i].each do |row|
+      collected[row[:timeframe]] = row[:data]
+    end
+    collected
+  end
 
 end
