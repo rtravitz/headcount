@@ -23,6 +23,14 @@ module Organizer
   end
 
   def self.organize_statewide_testing_data(data)
+    group_by_file(data)
+  end
+
+  def self.organize_economic_data(data)
+    organized = group_by_file(data)
+  end
+
+  def self.group_by_file(data)
     grouped = data.group_by{|row| row[:source]}
     grouped[:name] = data.first[:location].upcase
     grouped
