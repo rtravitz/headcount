@@ -46,7 +46,8 @@ module Organizer
     collected = Hash.new
     data[:median_household_income].each do |row|
       years = row[:timeframe].split("-")
-      collected[years] = row[:data]
+      years.map!{|year| year.to_i}
+      collected[years] = row[:data].to_f
     end
     collected
   end
@@ -55,8 +56,8 @@ module Organizer
     return nil unless data[:children_in_poverty]
     collected = Hash.new
     data[:children_in_poverty].each do |row|
-      year = row[:timeframe]
-      collected[year] = row[:data] if row[:dataformat] == "Percent"
+      year = row[:timeframe].to_i
+      collected[year] = row[:data].to_f if row[:dataformat] == "Percent"
     end
     collected
   end
@@ -66,7 +67,7 @@ module Organizer
     collected = Hash.new
     data[:free_or_reduced_price_lunch].each do |row|
       next unless row[:poverty_level] == "Eligible for Free or Reduced Lunch"
-      year = row[:timeframe]
+      year = row[:timeframe].to_i
       collected[year] = {row[:dataformat].downcase.to_sym => row[:data].to_f.round(3)} unless collected[year]
       collected[year][row[:dataformat].downcase.to_sym] = row[:data].to_f.round(3)
       collected[year][:total] = collected[year].delete(:number) if row[:dataformat] == "Number"
@@ -78,7 +79,7 @@ module Organizer
     return nil unless data[:title_i]
     collected = Hash.new
     data[:title_i].each do |row|
-      collected[row[:timeframe]] = row[:data]
+      collected[row[:timeframe].to_i] = row[:data].to_f
     end
     collected
   end
