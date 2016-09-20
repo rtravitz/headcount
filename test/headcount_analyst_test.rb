@@ -88,7 +88,7 @@ class HeadcountAnalystTest < Minitest::Test
     set = ha.high_income_disparity
 
     assert_instance_of ResultSet, set
-    assert_equal 2, set.count
+    assert_equal 2, set.matching_districts.count
     assert_equal "HINSDALE COUNTY RE 1", set.matching_districts.first.name
     assert_equal 63265.2, set.matching_districts.first.median_household_income
     assert_in_delta 0.205, set.matching_districts.first.children_in_poverty_rate, 0.005
@@ -103,6 +103,15 @@ class HeadcountAnalystTest < Minitest::Test
     set = ha.high_poverty_and_high_school_graduation
 
     assert_instance_of ResultSet, set
+    assert_equal 55, set.matching_districts.count
+    assert_instance_of ResultEntry, set.matching_districts.first
+    assert_equal "ALAMOSA RE-11J", set.matching_districts.first.name
+    assert_in_delta 0.637, set.matching_districts.first.free_or_reduced_price_lunch_rate, 0.005
+    assert_in_delta 0.266, set.matching_districts.first.children_in_poverty_rate, 0.005
+    assert_in_delta 0.759, set.matching_districts.first.high_school_graduation_rate, 0.005
+    assert_in_delta 0.350, set.statewide_average.free_or_reduced_price_lunch_rate, 0.005
+    assert_in_delta 0.164, set.statewide_average.children_in_poverty_rate, 0.005
+    assert_in_delta 0.751, set.statewide_average.high_school_graduation_rate, 0.005
   end
 
 

@@ -10,8 +10,8 @@ class ResultEntry
     key_check(@data[:name])
   end
 
-  def free_and_reduced_price_lunch_rate
-    key_check(@data[:free_and_reduced_price_lunch_rate])
+  def free_or_reduced_price_lunch_rate
+    key_check(@data[:free_or_reduced_price_lunch])
   end
 
   def children_in_poverty_rate
@@ -19,7 +19,7 @@ class ResultEntry
   end
 
   def high_school_graduation_rate
-    key_check(@data[:high_school_graduation_rate])
+    key_check(@data[:high_school_graduation])
   end
 
   def median_household_income

@@ -87,10 +87,25 @@ class HeadcountAnalyst
                                     high_school_graduation: co_graduation})
     matches = Array.new
     @dr.dr.each do |name, district|
-      if meets_poverty_and_high_school_threshold?( district, co_lunch,
+      check = meets_poverty_and_high_school_threshold?( district, co_lunch,
                                             co_poverty, co_graduation)
+      if check
+        matches << create_high_poverty_entry(district)
       end
     end
+    ResultSet.new(matching_districts: matches, statewide_average: state_average)
+  end
+
+  def create_high_poverty_entry(district)
+    lunch = district.economic_profile.free_or_reduced_price_lunch_average
+    poverty = district.economic_profile.children_in_poverty_average
+    graduation = district.enrollment.graduation_rate_average
+    ResultEntry.new(
+      {name: district.name,
+      free_or_reduced_price_lunch: lunch,
+      children_in_poverty: poverty,
+      high_school_graduation: graduation}
+    )
   end
 
   def meets_poverty_and_high_school_threshold?(district, lunch, poverty, grad)
