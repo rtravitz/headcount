@@ -124,8 +124,8 @@ class HeadcountAnalystTest < Minitest::Test
   def test_kindergarten_participation_correlates_with_household_income
     ha = HeadcountAnalyst.new(@dr)
 
-    # assert ha.kindergarten_participation_correlates_with_household_income(for: 'ACADEMY 20')
-    # assert ha.kindergarten_participation_correlates_with_household_income(for: 'COLORADO')
+    refute ha.kindergarten_participation_correlates_with_household_income(for: 'ACADEMY 20')
+    assert ha.kindergarten_participation_correlates_with_household_income(for: 'COLORADO')
     # assert ha.kindergarten_participation_correlates_with_household_income(for: 'STATEWIDE')
     # refute ha.kindergarten_participation_correlates_with_household_income(:across => ['ACADEMY 20', 'YUMA SCHOOL DISTRICT 1', 'WILEY RE-13 JT', 'SPRINGFIELD RE-4'])
   end

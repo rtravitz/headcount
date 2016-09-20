@@ -70,7 +70,6 @@ class HeadcountAnalyst
   end
 
   def kindergarten_participation_correlates_with_household_income(input)
-    state = kindergarten_participation_against_household_income("COLORADO")
     if input.has_key?(:for) && input[:for] != "STATEWIDE"
       correlates?(kindergarten_participation_against_household_income(input[:for]))
     end
