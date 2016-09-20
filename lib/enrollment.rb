@@ -26,6 +26,11 @@ class Enrollment
     end
   end
 
+  def kindergarten_participation_rate_average
+    sum = @information[:kindergarten].map{|year, rate| rate}
+    sum.reduce(:+) / sum.count
+  end
+
   def graduation_rate_by_year
     @information[:high_school_graduation].each do |year,rate|
       @information[:high_school_graduation][year] = rate.round(3)

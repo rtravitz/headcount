@@ -54,7 +54,7 @@ class HeadcountAnalyst
     return check_multi_district(command) if multi_district?(command)
   end
 
-  def household_income_variation(district, against)
+  def median_income_variation(district, against)
     numerator = @dr.find_economic_profile(district.upcase)
     numerator = numerator.median_household_income_average
     denominator = @dr.find_economic_profile(against[:against])
@@ -62,17 +62,30 @@ class HeadcountAnalyst
     (numerator / denominator).round(3)
   end
 
-  def kindergarten_participation_correlates_with_household_income(input)
+  def kindergarten_participation_against_household_income(input)
     state = {against: "COLORADO"}
-    if input.has_key?(:for)
-      kindergarten_participation_against_household_income(input[:for], state)
+    kinder = kindergarten_participation_rate_variation(input, state)
+    income = median_income_variation(input, state)
+    (kinder / income).round(3)
+  end
+
+  def kindergarten_participation_correlates_with_household_income(input)
+    state = kindergarten_participation_against_household_income("COLORADO")
+    if input.has_key?(:for) && input[:for] != "STATEWIDE"
+      correlates?(kindergarten_participation_against_household_income(input[:for]))
     end
   end
 
-  def kindergarten_participation_against_household_income(district, against)
-    kinder = kindergarten_participation_rate_variation(district, against)
-    household = household_income_variation(district, against)
-    (kinder / household).round(3)
+  # def kindergarten_participation_against_household_income(district)
+  #   kinder = @dr.find_enrollment(district)
+  #   kinder = kinder.kindergarten_participation_rate_average
+  #   household = @dr.find_economic_profile(district)
+  #   household = household.median_household_income_average
+  #   (kinder / household).round(3)
+  # end
+
+  def correlates?(num)
+    num >= 0.6 && num <= 1.5 ? true : false
   end
 
   def high_income_disparity
