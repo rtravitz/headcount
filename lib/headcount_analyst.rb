@@ -58,13 +58,16 @@ class HeadcountAnalyst
     state_profile = @dr.find_economic_profile("COLORADO")
     co_median = state_profile.median_household_income_average
     co_poverty = find_state_poverty_average
+    state_average = ResultEntry.new({median_household_income: co_median,
+      children_in_poverty: co_poverty})
     matches = Array.new
-    @dr.ecr.each do |profile|
-      if profile.median_household_income_average > co_median &&
-         profile.children_in_poverty_average > co_poverty
+    @dr.ecr.repository.each do |name, profile|
+      if (profile.median_household_income_average > co_median &&
+         profile.children_in_poverty_average > co_poverty)
          matches << ResultEntry.new(profile.information)
       end
     end
+    ResultSet.new(matching_districts: matches, statewide_average: state_average)
   end
 
   def find_state_poverty_average

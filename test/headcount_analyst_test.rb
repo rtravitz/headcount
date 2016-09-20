@@ -92,7 +92,10 @@ class HeadcountAnalystTest < Minitest::Test
   def test_high_income_disparity
     ha = HeadcountAnalyst.new(@dr)
 
-    ha.high_income_disparity
+    set = ha.high_income_disparity
 
+    assert_instance_of ResultSet, set
+    assert_equal 2, set.count
+    assert_equal 5200, set.matching_districts.first.median_household_income
   end
 end

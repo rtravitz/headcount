@@ -12,4 +12,8 @@ class ResultSet
     @set[:statewide_average]
   end
 
+  def count
+    @set.count
+  end
+
 end
