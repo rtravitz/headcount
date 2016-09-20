@@ -3,13 +3,6 @@ require './lib/headcount_analyst'
 
 class HeadcountAnalystTest < Minitest::Test
   def setup
-    # @dr = DistrictRepository.new
-    # @dr.load_data({
-    #   :enrollment => {
-    #       :kindergarten => "./data/Kindergartners in full-day program.csv",
-    #       :high_school_graduation => "./data/High school graduation rates.csv"
-    #     }
-    #   })
     @dr = DistrictRepository.new
     @dr.load_data({
       :enrollment => {
@@ -96,6 +89,11 @@ class HeadcountAnalystTest < Minitest::Test
 
     assert_instance_of ResultSet, set
     assert_equal 2, set.count
-    assert_equal 5200, set.matching_districts.first.median_household_income
+    assert_equal "HINSDALE COUNTY RE 1", set.matching_districts.first.name
+    assert_equal 63265.2, set.matching_districts.first.median_household_income
+    assert_in_delta 0.205, set.matching_districts.first.children_in_poverty_rate, 0.005
+    assert_instance_of ResultEntry, set.statewide_average
+    assert_equal 57408.0, set.statewide_average.median_household_income
+    assert_in_delta 0.165, set.statewide_average.children_in_poverty_rate, 0.005
   end
 end

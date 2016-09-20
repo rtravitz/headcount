@@ -6,12 +6,16 @@ class ResultEntry
     @data = input
   end
 
+  def name
+    key_check(@data[:name])
+  end
+
   def free_and_reduced_price_lunch_rate
     key_check(@data[:free_and_reduced_price_lunch_rate])
   end
 
   def children_in_poverty_rate
-    key_check(@data[:children_in_poverty_rate])
+    key_check(@data[:children_in_poverty])
   end
 
   def high_school_graduation_rate

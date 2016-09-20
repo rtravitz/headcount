@@ -64,10 +64,18 @@ class HeadcountAnalyst
     @dr.ecr.repository.each do |name, profile|
       if (profile.median_household_income_average > co_median &&
          profile.children_in_poverty_average > co_poverty)
-         matches << ResultEntry.new(profile.information)
+         matches << create_result_entry(profile)
       end
     end
     ResultSet.new(matching_districts: matches, statewide_average: state_average)
+  end
+
+  def create_result_entry(profile)
+    ResultEntry.new(
+            { name: profile.name,
+              median_household_income: profile.median_household_income_average,
+              children_in_poverty: profile.children_in_poverty_average}
+      )
   end
 
   def find_state_poverty_average
