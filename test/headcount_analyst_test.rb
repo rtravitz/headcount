@@ -126,8 +126,8 @@ class HeadcountAnalystTest < Minitest::Test
 
     refute ha.kindergarten_participation_correlates_with_household_income(for: 'ACADEMY 20')
     assert ha.kindergarten_participation_correlates_with_household_income(for: 'COLORADO')
-    # assert ha.kindergarten_participation_correlates_with_household_income(for: 'STATEWIDE')
-    # refute ha.kindergarten_participation_correlates_with_household_income(:across => ['ACADEMY 20', 'YUMA SCHOOL DISTRICT 1', 'WILEY RE-13 JT', 'SPRINGFIELD RE-4'])
+    refute ha.kindergarten_participation_correlates_with_household_income(for: 'STATEWIDE')
+    refute ha.kindergarten_participation_correlates_with_household_income(:across => ['ACADEMY 20', 'YUMA SCHOOL DISTRICT 1', 'WILEY RE-13 JT', 'SPRINGFIELD RE-4'])
   end
 
 
