@@ -7,7 +7,7 @@ require_relative 'economic_profile_repository'
 class DistrictRepository
   include Loader
 
-  attr_reader :dr
+  attr_reader :dr, :ecr
 
   def initialize
     @dr = Hash.new
@@ -20,7 +20,7 @@ class DistrictRepository
     paths = Loader.extract_paths(path)
     @er.load_data(paths[:enrollment]) unless paths[:enrollment].nil?
     @str.load_data(paths[:statewide]) unless paths[:statewide].nil?
-    @ecr.load_data(paths[:economic_profile]) unless path[:economic_profile].nil?
+    @ecr.load_data(paths[:economic]) unless paths[:economic].nil?
     create_districts(paths[:enrollment])
   end
 

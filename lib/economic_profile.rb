@@ -33,6 +33,12 @@ class EconomicProfile
     @information[:children_in_poverty][year].round(3)
   end
 
+  def children_in_poverty_average
+    require "pry"; binding.pry
+    sum = @information[:children_in_poverty].values.reduce(:+)
+    sum / @information[:children_in_poverty].count
+  end
+
   def free_or_reduced_price_lunch_percentage_in_year(year)
     Sanitizer.error?(@information[:free_or_reduced_price_lunch].has_key?(year))
     @information[:free_or_reduced_price_lunch][year][:percentage].round(3)

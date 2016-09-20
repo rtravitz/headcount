@@ -3,13 +3,33 @@ require './lib/headcount_analyst'
 
 class HeadcountAnalystTest < Minitest::Test
   def setup
+    # @dr = DistrictRepository.new
+    # @dr.load_data({
+    #   :enrollment => {
+    #       :kindergarten => "./data/Kindergartners in full-day program.csv",
+    #       :high_school_graduation => "./data/High school graduation rates.csv"
+    #     }
+    #   })
     @dr = DistrictRepository.new
     @dr.load_data({
       :enrollment => {
-          :kindergarten => "./data/Kindergartners in full-day program.csv",
-          :high_school_graduation => "./data/High school graduation rates.csv"
-        }
-      })
+        :kindergarten => "./data/Kindergartners in full-day program.csv",
+        :high_school_graduation => "./data/High school graduation rates.csv",
+      },
+      :statewide_testing => {
+        :third_grade => "./data/3rd grade students scoring proficient or above on the CSAP_TCAP.csv",
+        :eighth_grade => "./data/8th grade students scoring proficient or above on the CSAP_TCAP.csv",
+        :math => "./data/Average proficiency on the CSAP_TCAP by race_ethnicity_ Math.csv",
+        :reading => "./data/Average proficiency on the CSAP_TCAP by race_ethnicity_ Reading.csv",
+        :writing => "./data/Average proficiency on the CSAP_TCAP by race_ethnicity_ Writing.csv"
+      },
+      :economic_profile => {
+        :median_household_income => "./test/fixtures/Median household income.csv",
+        :children_in_poverty => "./test/fixtures/School-aged children in poverty.csv",
+        :free_or_reduced_price_lunch => "./test/fixtures/Students qualifying for free or reduced price lunch.csv",
+        :title_i => "./test/fixtures/Title I students.csv"
+      }
+    })
   end
 
   def test_headcount_analyst_exists
@@ -67,5 +87,12 @@ class HeadcountAnalystTest < Minitest::Test
     )
 
     assert action3
+  end
+
+  def test_high_income_disparity
+    ha = HeadcountAnalyst.new(@dr)
+
+    ha.high_income_disparity
+
   end
 end
