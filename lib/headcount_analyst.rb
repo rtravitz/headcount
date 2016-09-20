@@ -64,18 +64,57 @@ class HeadcountAnalyst
     @dr.ecr.repository.each do |name, profile|
       if (profile.median_household_income_average > co_median &&
          profile.children_in_poverty_average > co_poverty)
-         matches << create_result_entry(profile)
+         matches << create_income_disparity_entry(profile)
       end
     end
     ResultSet.new(matching_districts: matches, statewide_average: state_average)
   end
 
-  def create_result_entry(profile)
+  def create_income_disparity_entry(profile)
     ResultEntry.new(
             { name: profile.name,
               median_household_income: profile.median_household_income_average,
               children_in_poverty: profile.children_in_poverty_average}
       )
+  end
+
+  def high_poverty_and_high_school_graduation
+    co_lunch = find_state_lunch_average
+    co_poverty = find_state_poverty_average
+    co_graduation = find_average_high_school_graduation
+    state_average = ResultEntry.new({free_or_reduced_price_lunch: co_lunch,
+                                    children_in_poverty: co_poverty,
+                                    high_school_graduation: co_graduation})
+    matches = Array.new
+    @dr.dr.each do |name, district|
+      if meets_poverty_and_high_school_threshold?( district, co_lunch,
+                                            co_poverty, co_graduation)
+      end
+    end
+  end
+
+  def meets_poverty_and_high_school_threshold?(district, lunch, poverty, grad)
+    if (district.economic_profile.free_or_reduced_price_lunch_average > lunch &&
+       district.economic_profile.children_in_poverty_average > poverty &&
+       district.enrollment.graduation_rate_average > grad)
+      return true
+    else
+      return false
+    end
+  end
+
+  def find_state_lunch_average
+    state = @dr.find_economic_profile("COLORADO")
+    sum = state.information[:free_or_reduced_price_lunch].map do |year, data|
+      data[:percent]
+    end
+    total = sum.reduce(:+) / sum.count
+  end
+
+  def find_average_high_school_graduation
+    state = @dr.find_enrollment("COLORADO")
+    sum = state.information[:high_school_graduation].map{|year, rate| rate}
+    final = sum.reduce(:+) / sum.count
   end
 
   def find_state_poverty_average
@@ -127,4 +166,5 @@ class HeadcountAnalyst
     return true if value <= 1.5 && value >= 0.6
     return false
   end
+
 end

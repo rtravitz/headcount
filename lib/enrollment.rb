@@ -40,4 +40,9 @@ class Enrollment
       @information[:high_school_graduation][year].round(3)
     end
   end
+
+  def graduation_rate_average
+    sum = @information[:high_school_graduation].map{|year, rate| rate}
+    sum.reduce(:+) / sum.count
+  end
 end

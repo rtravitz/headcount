@@ -48,6 +48,13 @@ class EconomicProfile
     @information[:free_or_reduced_price_lunch][year][:total].round(3)
   end
 
+  def free_or_reduced_price_lunch_average
+    sum = @information[:free_or_reduced_price_lunch].map do |year, data|
+      data[:percent]
+    end
+    total = sum.reduce(:+) / sum.count
+  end
+
   def title_i_in_year(year)
     Sanitizer.error?(@information[:title_i].has_key?(year))
     @information[:title_i][year].round(3)

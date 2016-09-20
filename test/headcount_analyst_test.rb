@@ -10,11 +10,11 @@ class HeadcountAnalystTest < Minitest::Test
         :high_school_graduation => "./data/High school graduation rates.csv",
       },
       :statewide_testing => {
-        :third_grade => "./data/3rd grade students scoring proficient or above on the CSAP_TCAP.csv",
-        :eighth_grade => "./data/8th grade students scoring proficient or above on the CSAP_TCAP.csv",
-        :math => "./data/Average proficiency on the CSAP_TCAP by race_ethnicity_ Math.csv",
-        :reading => "./data/Average proficiency on the CSAP_TCAP by race_ethnicity_ Reading.csv",
-        :writing => "./data/Average proficiency on the CSAP_TCAP by race_ethnicity_ Writing.csv"
+        :third_grade => "./test/fixtures/3rd grade students scoring proficient or above on the CSAP_TCAP.csv",
+        :eighth_grade => "./test/fixtures/8th grade students scoring proficient or above on the CSAP_TCAP.csv",
+        :math => "./test/fixtures/Average proficiency on the CSAP_TCAP by race_ethnicity_ Math.csv",
+        :reading => "./test/fixtures/Average proficiency on the CSAP_TCAP by race_ethnicity_ Reading.csv",
+        :writing => "./test/fixtures/Average proficiency on the CSAP_TCAP by race_ethnicity_ Writing.csv"
       },
       :economic_profile => {
         :median_household_income => "./data/Median household income.csv",
@@ -96,4 +96,14 @@ class HeadcountAnalystTest < Minitest::Test
     assert_equal 57408.0, set.statewide_average.median_household_income
     assert_in_delta 0.165, set.statewide_average.children_in_poverty_rate, 0.005
   end
+
+  def test_high_poverty_and_high_school_graduation
+    ha = HeadcountAnalyst.new(@dr)
+
+    set = ha.high_poverty_and_high_school_graduation
+
+    assert_instance_of ResultSet, set
+  end
+
+
 end
