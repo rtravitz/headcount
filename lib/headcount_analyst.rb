@@ -57,7 +57,7 @@ class HeadcountAnalyst
   def high_income_disparity
     state_profile = @dr.find_economic_profile("COLORADO")
     co_median = state_profile.median_household_income_average
-    co_poverty = state_profile.children_in_poverty_average
+    co_poverty = find_state_poverty_average
     matches = Array.new
     @dr.ecr.each do |profile|
       if profile.median_household_income_average > co_median &&
@@ -65,6 +65,15 @@ class HeadcountAnalyst
          matches << ResultEntry.new(profile.information)
       end
     end
+  end
+
+  def find_state_poverty_average
+    averages = @dr.ecr.repository.map do |name, profile|
+      unless profile.information[:children_in_poverty].nil?
+        profile.children_in_poverty_average
+      end
+    end.compact
+    av = averages.reduce(:+) / averages.count
   end
 
   def check_statewide

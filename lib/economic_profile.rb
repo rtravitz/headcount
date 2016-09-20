@@ -34,7 +34,6 @@ class EconomicProfile
   end
 
   def children_in_poverty_average
-    require "pry"; binding.pry
     sum = @information[:children_in_poverty].values.reduce(:+)
     sum / @information[:children_in_poverty].count
   end
