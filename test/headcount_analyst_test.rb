@@ -114,5 +114,14 @@ class HeadcountAnalystTest < Minitest::Test
     assert_in_delta 0.751, set.statewide_average.high_school_graduation_rate, 0.005
   end
 
+  def test_kindergarten_participation_correlates_with_household_income
+    ha = HeadcountAnalyst.new(@dr)
+
+    assert ha.kindergarten_participation_correlates_with_household_income(for: 'ACADEMY 20')
+    assert ha.kindergarten_participation_correlates_with_household_income(for: 'COLORADO')
+    assert ha.kindergarten_participation_correlates_with_household_income(for: 'STATEWIDE')
+    refute ha.kindergarten_participation_correlates_with_household_income(:across => ['ACADEMY 20', 'YUMA SCHOOL DISTRICT 1', 'WILEY RE-13 JT', 'SPRINGFIELD RE-4'])
+  end
+
 
 end
