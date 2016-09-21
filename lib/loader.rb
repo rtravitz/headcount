@@ -20,7 +20,6 @@ module Loader
       contents.map do |row|
         row[:source] = level
         row = Sanitizer.sanitize(row)
-        require "pry"; binding.pry
         row
       end
     end

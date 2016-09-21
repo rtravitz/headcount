@@ -21,11 +21,11 @@ class OrganizerTest < Minitest::Test
   end
 
   def test_organize_statewide_testing_data
-    expected = {:third_grade=>[{:location=>"Colorado", :score=>"Math", :source=>:third_grade}],
-                :writing=>[{:location=>"Colorado", :race_ethnicity=>"Native American", :source=>:writing}],
-                :reading=>[{:location=>"Colorado", :race_ethnicity=>"Hawaiian/Pacific Islander", :source=>:reading}],
-                :math=>[{:location=>"Colorado", :race_ethnicity=>"White", :source=>:math}],
-                :eighth_grade=>[{:location=>"Colorado", :score=>"Reading", :source=>:eighth_grade}], :name=>"COLORADO"}
+    expected = {:third_grade=>[{:location=>"COLORADO", :score=>"Math", :source=>:third_grade}],
+                :writing=>[{:location=>"COLORADO", :race_ethnicity=>"Native American", :source=>:writing}],
+                :reading=>[{:location=>"COLORADO", :race_ethnicity=>"Hawaiian/Pacific Islander", :source=>:reading}],
+                :math=>[{:location=>"COLORADO", :race_ethnicity=>"White", :source=>:math}],
+                :eighth_grade=>[{:location=>"COLORADO", :score=>"Reading", :source=>:eighth_grade}], :name=>"COLORADO"}
 
     action = Organizer.organize_statewide_testing_data(statewide_test_data)
 
@@ -33,21 +33,21 @@ class OrganizerTest < Minitest::Test
   end
 
   def enrollment_data
-    [{ :location=>"Colorado", :timeframe=>"2007", :dataformat=>"Percent",
-       :data=>"0.39465", :source=>:kindergarten},
-     { :location=>"Colorado", :timeframe=>"2006", :dataformat=>"Percent",
-       :data=>"0.33677", :source=>:kindergarten},
-     { :location=>"Colorado", :timeframe=>"2005", :dataformat=>"Percent",
-       :data=>"0.27807", :source=>:kindergarten}]
+    [{ :location=>"COLORADO", :timeframe=>2007, :dataformat=>"Percent",
+       :data=>0.395, :source=>:kindergarten},
+     { :location=>"COLORADO", :timeframe=>2006, :dataformat=>"Percent",
+       :data=>0.337, :source=>:kindergarten},
+     { :location=>"COLORADO", :timeframe=>2005, :dataformat=>"Percent",
+       :data=>0.278, :source=>:kindergarten}]
   end
 
   def statewide_test_data
     [
-      {:location=>"Colorado", :score=>"Math", :source=>:third_grade},
-      {:location=>"Colorado", :race_ethnicity=>"Native American", :source=>:writing},
-      {:location=>"Colorado", :race_ethnicity=>"Hawaiian/Pacific Islander", :source=>:reading},
-      {:location=>"Colorado", :race_ethnicity=>"White", :source=>:math},
-      {:location=>"Colorado", :score=>"Reading", :source=>:eighth_grade}
+      {:location=>"COLORADO", :score=>"Math", :source=>:third_grade},
+      {:location=>"COLORADO", :race_ethnicity=>"Native American", :source=>:writing},
+      {:location=>"COLORADO", :race_ethnicity=>"Hawaiian/Pacific Islander", :source=>:reading},
+      {:location=>"COLORADO", :race_ethnicity=>"White", :source=>:math},
+      {:location=>"COLORADO", :score=>"Reading", :source=>:eighth_grade}
     ]
   end
 

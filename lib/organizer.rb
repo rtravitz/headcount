@@ -4,12 +4,12 @@ module Organizer
     information = Hash.new
     data.each do |row|
       if information[row[:source]]
-        information[row[:source]][row[:timeframe].to_i] = row[:data].to_f.round(3)
+        information[row[:source]][row[:timeframe]] = row[:data]
       else
-        information[row[:source]] = {row[:timeframe].to_i => row[:data].to_f.round(3)}
+        information[row[:source]] = {row[:timeframe] => row[:data]}
       end
     end
-    information[:name] = data.first[:location].upcase
+    information[:name] = data.first[:location]
     information
   end
 

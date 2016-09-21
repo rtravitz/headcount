@@ -58,7 +58,7 @@ module Sanitizer
     row
   end
 
-  def standard_clean(row)
+  def self.standard_clean(row)
     row[:location] = row[:location].upcase
     row[:timeframe] = row[:timeframe].to_i
     row[:data] = row[:data].to_f.round(3)
