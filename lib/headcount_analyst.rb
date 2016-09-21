@@ -166,13 +166,13 @@ class HeadcountAnalyst
     sum = state.information[:free_or_reduced_price_lunch].map do |year, data|
       data[:percent]
     end
-    total = sum.reduce(:+) / sum.count
+    sum.reduce(:+) / sum.count
   end
 
   def find_average_high_school_graduation
     state = @dr.find_enrollment("COLORADO")
     sum = state.information[:high_school_graduation].map{|year, rate| rate}
-    final = sum.reduce(:+) / sum.count
+    sum.reduce(:+) / sum.count
   end
 
   def find_state_poverty_average
@@ -181,7 +181,7 @@ class HeadcountAnalyst
         profile.children_in_poverty_average
       end
     end.compact
-    av = averages.reduce(:+) / averages.count
+    averages.reduce(:+) / averages.count
   end
 
   def check_statewide

@@ -52,7 +52,7 @@ class EconomicProfile
     sum = @information[:free_or_reduced_price_lunch].map do |year, data|
       data[:percent]
     end
-    total = sum.reduce(:+) / sum.count
+    sum.reduce(:+) / sum.count
   end
 
   def title_i_in_year(year)
