@@ -30,10 +30,6 @@ class HeadcountAnalyst
     result
   end
 
-  def average(array)
-    array.reduce(0.0){|sum, item| sum + item} / array.length
-  end
-
   def graduation_variation(district, against)
     numerator = @dr.find_by_name(district.upcase).enrollment
     denominator = @dr.find_by_name(against[:against]).enrollment
@@ -54,14 +50,6 @@ class HeadcountAnalyst
     return check_multi_district(command) if multi_district?(command)
   end
 
-  def median_income_variation(district, against)
-    numerator = @dr.find_economic_profile(district.upcase)
-    numerator = numerator.median_household_income_average
-    denominator = @dr.find_economic_profile(against[:against])
-    denominator = denominator.median_household_income_average
-    (numerator / denominator).round(3)
-  end
-
   def kindergarten_participation_against_household_income(input)
     state = {against: "COLORADO"}
     kinder = kindergarten_participation_rate_variation(input, state)
@@ -69,39 +57,10 @@ class HeadcountAnalyst
     (kinder / income).round(3)
   end
 
-  def one_district_correlation(input)
-    num = (kindergarten_participation_against_household_income(input[:for]))
-    correlates?(num)
-  end
-
-  def statewide_correlation
-    collected = @dr.dr.map do |name, district|
-      correlates?(kindergarten_participation_against_household_income(name))
-    end
-    grouped = collected.group_by{|boolean| boolean}
-    return (grouped[true].count.to_f / collected.count) >= 0.7 ? true : false
-  end
-
-  def across_correlation(input)
-    collected = input[:across].map do |name|
-      correlates?(kindergarten_participation_against_household_income(name))
-    end
-    grouped = collected.group_by{|boolean| boolean}
-    if grouped[true].nil?
-      false
-    else
-      (grouped[true].count.to_f / collected.count) >= 0.7 ? true : false
-    end
-  end
-
   def kindergarten_participation_correlates_with_household_income(input)
     return one_district_correlation(input)  if one_district?(input)
     return statewide_correlation            if statewide?(input)
     return across_correlation(input)        if input.has_key?(:across)
-  end
-
-  def correlates?(num)
-    num >= 0.6 && num <= 1.5 ? true : false
   end
 
   def high_income_disparity
@@ -118,14 +77,6 @@ class HeadcountAnalyst
       end
     end
     ResultSet.new(matching_districts: matches, statewide_average: state_average)
-  end
-
-  def create_income_disparity_entry(profile)
-    ResultEntry.new(
-            { name: profile.name,
-              median_household_income: profile.median_household_income_average,
-              children_in_poverty: profile.children_in_poverty_average}
-      )
   end
 
   def high_poverty_and_high_school_graduation
@@ -146,26 +97,77 @@ class HeadcountAnalyst
     ResultSet.new(matching_districts: matches, statewide_average: state_average)
   end
 
+
+  private
+
+  def across_correlation(input)
+    collected = input[:across].map do |name|
+      correlates?(kindergarten_participation_against_household_income(name))
+    end
+    grouped = collected.group_by{|boolean| boolean}
+    if grouped[true].nil?
+      false
+    else
+      (grouped[true].count.to_f / collected.count) >= 0.7 ? true : false
+    end
+  end
+
+  def average(array)
+    array.reduce(0.0){|sum, item| sum + item} / array.length
+  end
+
+  def check_multi_district(command)
+    values = command[:across].map do |name|
+      v = kindergarten_participation_against_high_school_graduation(name.upcase)
+      return_check(v)
+    end
+    grouped = values.group_by{|boolean| boolean}
+    (grouped[true].count / values.count) >= 0.7 ? true : false
+  end
+
+  def check_one_district(command)
+    c = command[:for]
+    value = kindergarten_participation_against_high_school_graduation(c)
+    return_check(value)
+  end
+
+  def check_statewide
+    values = @dr.dr.map do |name, district|
+      item = kindergarten_participation_against_high_school_graduation(name)
+      return_check(item)
+    end
+    grouped = values.group_by{|boolean| boolean}
+    (grouped[true].count / values.count) >= 0.7 ? true : false
+  end
+
+  def correlates?(num)
+    num >= 0.6 && num <= 1.5 ? true : false
+  end
+
+  def create_income_disparity_entry(profile)
+    ResultEntry.new(
+            { name: profile.name,
+              median_household_income: profile.median_household_income_average,
+              children_in_poverty: profile.children_in_poverty_average}
+      )
+  end
+
   def create_high_poverty_entry(district)
     lunch = district.economic_profile.free_or_reduced_price_lunch_average
     poverty = district.economic_profile.children_in_poverty_average
     graduation = district.enrollment.graduation_rate_average
     ResultEntry.new(
-      {name: district.name,
+    {name: district.name,
       free_or_reduced_price_lunch: lunch,
       children_in_poverty: poverty,
       high_school_graduation: graduation}
-    )
+      )
   end
 
-  def meets_poverty_and_high_school_threshold?(district, lunch, poverty, grad)
-    if (district.economic_profile.free_or_reduced_price_lunch_average > lunch &&
-       district.economic_profile.children_in_poverty_average > poverty &&
-       district.enrollment.graduation_rate_average > grad)
-      return true
-    else
-      return false
-    end
+  def find_average_high_school_graduation
+    state = @dr.find_enrollment("COLORADO")
+    sum = state.information[:high_school_graduation].map{|year, rate| rate}
+    sum.reduce(:+) / sum.count
   end
 
   def find_state_lunch_average
@@ -173,12 +175,6 @@ class HeadcountAnalyst
     sum = state.information[:free_or_reduced_price_lunch].map do |year, data|
       data[:percent]
     end
-    sum.reduce(:+) / sum.count
-  end
-
-  def find_average_high_school_graduation
-    state = @dr.find_enrollment("COLORADO")
-    sum = state.information[:high_school_graduation].map{|year, rate| rate}
     sum.reduce(:+) / sum.count
   end
 
@@ -191,45 +187,52 @@ class HeadcountAnalyst
     averages.reduce(:+) / averages.count
   end
 
-  def check_statewide
-    values = @dr.dr.map do |name, district|
-      item = kindergarten_participation_against_high_school_graduation(name)
-      return_check(item)
+  def median_income_variation(district, against)
+    numerator = @dr.find_economic_profile(district.upcase)
+    numerator = numerator.median_household_income_average
+    denominator = @dr.find_economic_profile(against[:against])
+    denominator = denominator.median_household_income_average
+    (numerator / denominator).round(3)
+  end
+
+  def meets_poverty_and_high_school_threshold?(district, lunch, poverty, grad)
+    if (district.economic_profile.free_or_reduced_price_lunch_average > lunch &&
+      district.economic_profile.children_in_poverty_average > poverty &&
+      district.enrollment.graduation_rate_average > grad)
+      return true
+    else
+      return false
     end
-    grouped = values.group_by{|boolean| boolean}
-    (grouped[true].count / values.count) >= 0.7 ? true : false
-  end
-
-  def check_one_district(command)
-    c = command[:for]
-    value = kindergarten_participation_against_high_school_graduation(c)
-    return_check(value)
-  end
-
-  def check_multi_district(command)
-    values = command[:across].map do |name|
-      v = kindergarten_participation_against_high_school_graduation(name.upcase)
-      return_check(v)
-    end
-    grouped = values.group_by{|boolean| boolean}
-    (grouped[true].count / values.count) >= 0.7 ? true : false
-  end
-
-  def statewide?(command)
-    command.has_value?('STATEWIDE')
-  end
-
-  def one_district?(command)
-    command.has_key?(:for) && !command.has_value?('STATEWIDE')
   end
 
   def multi_district?(command)
     !command.has_key?(:for) && !command.has_value?('STATEWIDE')
   end
 
+  def one_district?(command)
+    command.has_key?(:for) && !command.has_value?('STATEWIDE')
+  end
+
+  def one_district_correlation(input)
+    num = (kindergarten_participation_against_household_income(input[:for]))
+    correlates?(num)
+  end
+
   def return_check(value)
     return true if value <= 1.5 && value >= 0.6
     return false
+  end
+
+  def statewide?(command)
+    command.has_value?('STATEWIDE')
+  end
+
+  def statewide_correlation
+    collected = @dr.dr.map do |name, district|
+      correlates?(kindergarten_participation_against_household_income(name))
+    end
+    grouped = collected.group_by{|boolean| boolean}
+    return (grouped[true].count.to_f / collected.count) >= 0.7 ? true : false
   end
 
 end
