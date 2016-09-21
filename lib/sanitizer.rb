@@ -24,10 +24,10 @@ module Sanitizer
     return :testing       if (row_source == :math ||
                               row_source == :reading ||
                               row_source == :writing)
-    return :median        if row_source == :median_household_income
+    return :median        if  row_source == :median_household_income
     return :poverty_lunch if (row_source == :children_in_poverty ||
                               row_source == :free_or_reduced_price_lunch)
-    return :title_i       if row_source == :title_i
+    return :title_i       if  row_source == :title_i
   end
 
   def self.clean_enrollment_data(row)

@@ -68,9 +68,13 @@ module Organizer
     data[:free_or_reduced_price_lunch].each do |row|
       next unless row[:poverty_level] == "Eligible for Free or Reduced Lunch"
       year = row[:timeframe].to_i
-      collected[year] = {row[:dataformat].downcase.to_sym => row[:data]} unless collected[year]
+      unless collected[year]
+        collected[year] = {row[:dataformat].downcase.to_sym => row[:data]}
+      end
       collected[year][row[:dataformat].downcase.to_sym] = row[:data]
-      collected[year][:total] = collected[year].delete(:number) if row[:dataformat] == "Number"
+      if row[:dataformat] == "Number"
+        collected[year][:total] = collected[year].delete(:number)
+      end
     end
     collected
   end

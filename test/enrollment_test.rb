@@ -4,6 +4,10 @@ require './lib/enrollment_repository'
 
 class EnrollmentTest < Minitest::Test
 
+  def setup
+
+  end
+
   def test_enrollment_exists
     e = Enrollment.new({:name => "ACADEMY 20",
       :kindergarten_participation => {2010 => 0.3915, 2011 => 0.35356, 2012 => 0.2677}})
@@ -18,9 +22,9 @@ class EnrollmentTest < Minitest::Test
     assert_equal "ACADEMY 20", e.name
   end
 
-  def test_kindergarten_participation_by_year_truncates_floats_to_three
+  def test_kindergarten_participation_by_year_returns_correct_floats
     e = Enrollment.new({:name => "ACADEMY 20",
-      :kindergarten_participation => {2010 => 0.3915, 2011 => 0.35356, 2012 => 0.2677}})
+      :kindergarten_participation => {2010 => 0.391, 2011 => 0.353, 2012 => 0.267}})
 
     assert_equal 0.391, e.kindergarten_participation_by_year[2010]
     assert_equal 0.353, e.kindergarten_participation_by_year[2011]
@@ -29,7 +33,7 @@ class EnrollmentTest < Minitest::Test
 
   def test_kindergarten_participation_in_year_returns_correct_truncated_number
     e = Enrollment.new({:name => "ACADEMY 20",
-      :kindergarten_participation => {2010 => 0.3915, 2011 => 0.35356, 2012 => 0.2677}})
+      :kindergarten_participation => {2010 => 0.391, 2011 => 0.353, 2012 => 0.267}})
 
     assert_equal nil, e.kindergarten_participation_in_year(2000)
     assert_equal 0.391, e.kindergarten_participation_in_year(2010)

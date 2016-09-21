@@ -10,17 +10,17 @@ class DistrictRepository
   attr_reader :dr, :ecr
 
   def initialize
-    @dr = Hash.new
-    @er = EnrollmentRepository.new
-    @str = StatewideTestRepository.new
-    @ecr = EconomicProfileRepository.new
+    @dr   = Hash.new
+    @er   = EnrollmentRepository.new
+    @str  = StatewideTestRepository.new
+    @ecr  = EconomicProfileRepository.new
   end
 
   def load_data(path)
     paths = Loader.extract_paths(path)
-    @er.load_data(paths[:enrollment]) unless paths[:enrollment].nil?
-    @str.load_data(paths[:statewide]) unless paths[:statewide].nil?
-    @ecr.load_data(paths[:economic]) unless paths[:economic].nil?
+    @er.load_data(paths[:enrollment])     unless paths[:enrollment].nil?
+    @str.load_data(paths[:statewide])     unless paths[:statewide].nil?
+    @ecr.load_data(paths[:economic])      unless paths[:economic].nil?
     create_districts(paths[:enrollment])
   end
 
@@ -29,7 +29,8 @@ class DistrictRepository
       contents = Loader.parse_csv(file_path)
       contents.each do |row|
         unless location_exists?(row[:location])
-          @dr[row[:location].upcase] = District.new({name: row[:location].upcase}, self)
+          new_district = District.new({name: row[:location].upcase}, self)
+          @dr[row[:location].upcase] = new_district
         end
       end
     end

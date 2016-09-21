@@ -13,7 +13,7 @@ class Enrollment
 
   def kindergarten_participation_by_year
     @information[:kindergarten].each do |year, rate|
-      @information[:kindergarten][year] = rate.to_s[0..4].to_f
+      @information[:kindergarten][year] = rate
     end
     @information[:kindergarten]
   end
@@ -22,7 +22,7 @@ class Enrollment
     if @information[:kindergarten][year].nil?
       nil
     else
-      @information[:kindergarten][year].to_s[0..4].to_f
+      @information[:kindergarten][year]
     end
   end
 
@@ -33,7 +33,7 @@ class Enrollment
 
   def graduation_rate_by_year
     @information[:high_school_graduation].each do |year,rate|
-      @information[:high_school_graduation][year] = rate.round(3)
+      @information[:high_school_graduation][year] = rate
     end
     @information[:high_school_graduation]
   end
@@ -42,7 +42,7 @@ class Enrollment
     if @information[:high_school_graduation][year].nil?
       nil
     else
-      @information[:high_school_graduation][year].round(3)
+      @information[:high_school_graduation][year]
     end
   end
 
