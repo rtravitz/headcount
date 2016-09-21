@@ -101,7 +101,7 @@ class HeadcountAnalyst
       return_check(v)
     end
     grouped = values.group_by{|boolean| boolean}
-    (grouped[true].count / values.count) >= 0.7 ? true : false
+    (grouped[true].count.to_f / values.count) >= 0.7 ? true : false
   end
 
   def check_one_district(command)
@@ -116,7 +116,7 @@ class HeadcountAnalyst
       return_check(item)
     end
     grouped = values.group_by{|boolean| boolean}
-    (grouped[true].count / values.count) >= 0.7 ? true : false
+    (grouped[true].count.to_f / values.count) >= 0.7 ? true : false
   end
 
   def correlates?(num)

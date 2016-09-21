@@ -53,9 +53,9 @@ class StatewideTest
     grouped.each do |year, dataset|
       sets = Hash.new
       dataset.each do |data_hash|
-        sets[data_hash[tag].downcase.to_sym] = data_hash[:data].to_f.round(3)
+        sets[data_hash[tag].downcase.to_sym] = data_hash[:data]
       end
-      final[year.to_i] = sets
+      final[year] = sets
     end
     final
   end

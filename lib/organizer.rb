@@ -28,10 +28,10 @@ module Organizer
 
   def self.organize_economic_data(data)
     organized = group_by_file(data)
-    organized[:median_household_income] = clean_median_income(organized)
-    organized[:children_in_poverty] = clean_children_in_poverty(organized)
-    organized[:free_or_reduced_price_lunch] = clean_lunch(organized)
-    organized[:title_i] = clean_title_i(organized)
+    organized[:median_household_income] = organize_median_income(organized)
+    organized[:children_in_poverty] = organize_children_in_poverty(organized)
+    organized[:free_or_reduced_price_lunch] = organize_lunch(organized)
+    organized[:title_i] = organize_title_i(organized)
     organized
   end
 
@@ -41,7 +41,7 @@ module Organizer
     grouped
   end
 
-  def self.clean_median_income(data)
+  def self.organize_median_income(data)
     return nil unless data[:median_household_income]
     collected = Hash.new
     data[:median_household_income].each do |row|
@@ -52,7 +52,7 @@ module Organizer
     collected
   end
 
-  def self.clean_children_in_poverty(data)
+  def self.organize_children_in_poverty(data)
     return nil unless data[:children_in_poverty]
     collected = Hash.new
     data[:children_in_poverty].each do |row|
@@ -62,7 +62,7 @@ module Organizer
     collected
   end
 
-  def self.clean_lunch(data)
+  def self.organize_lunch(data)
     return nil unless data[:free_or_reduced_price_lunch]
     collected = Hash.new
     data[:free_or_reduced_price_lunch].each do |row|
@@ -79,7 +79,7 @@ module Organizer
     collected
   end
 
-  def self.clean_title_i(data)
+  def self.organize_title_i(data)
     return nil unless data[:title_i]
     collected = Hash.new
     data[:title_i].each do |row|

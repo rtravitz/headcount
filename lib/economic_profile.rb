@@ -13,7 +13,6 @@ class EconomicProfile
     @information = data
   end
 
-
   def median_household_income_in_year(year)
     Sanitizer.error?(find_all_median_years.include?(year))
     values = Array.new
@@ -30,7 +29,7 @@ class EconomicProfile
 
   def children_in_poverty_in_year(year)
     Sanitizer.error?(@information[:children_in_poverty].has_key?(year))
-    @information[:children_in_poverty][year].round(3)
+    @information[:children_in_poverty][year]
   end
 
   def children_in_poverty_average
@@ -40,12 +39,12 @@ class EconomicProfile
 
   def free_or_reduced_price_lunch_percentage_in_year(year)
     Sanitizer.error?(@information[:free_or_reduced_price_lunch].has_key?(year))
-    @information[:free_or_reduced_price_lunch][year][:percentage].round(3)
+    @information[:free_or_reduced_price_lunch][year][:percentage]
   end
 
   def free_or_reduced_price_lunch_number_in_year(year)
     Sanitizer.error?(@information[:free_or_reduced_price_lunch].has_key?(year))
-    @information[:free_or_reduced_price_lunch][year][:total].round(3)
+    @information[:free_or_reduced_price_lunch][year][:total]
   end
 
   def free_or_reduced_price_lunch_average
@@ -57,7 +56,7 @@ class EconomicProfile
 
   def title_i_in_year(year)
     Sanitizer.error?(@information[:title_i].has_key?(year))
-    @information[:title_i][year].round(3)
+    @information[:title_i][year]
   end
 
   def find_all_median_years
