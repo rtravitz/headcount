@@ -17,12 +17,17 @@ module Sanitizer
   end
 
   def self.check_type(row_source)
-    return :enrollment if row_source == :kindergarten || row_source == :high_school_graduation
-    return :grades if row_source == :third_grade || row_source == :eighth_grade
-    return :testing if row_source == :math || row_source == :reading || row_source == :writing
-    return :median if row_source == :median_household_income
-    return :poverty_lunch if row_source == :children_in_poverty || row_source == :free_or_reduced_price_lunch
-    return :title_i if row_source == :title_i
+    return :enrollment    if (row_source == :kindergarten ||
+                              row_source == :high_school_graduation)
+    return :grades        if (row_source == :third_grade ||
+                              row_source == :eighth_grade)
+    return :testing       if (row_source == :math ||
+                              row_source == :reading ||
+                              row_source == :writing)
+    return :median        if row_source == :median_household_income
+    return :poverty_lunch if (row_source == :children_in_poverty ||
+                              row_source == :free_or_reduced_price_lunch)
+    return :title_i       if row_source == :title_i
   end
 
   def self.clean_enrollment_data(row)

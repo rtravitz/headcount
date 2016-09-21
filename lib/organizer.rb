@@ -37,7 +37,7 @@ module Organizer
 
   def self.group_by_file(data)
     grouped = data.group_by{|row| row[:source]}
-    grouped[:name] = data.first[:location].upcase
+    grouped[:name] = data.first[:location]
     grouped
   end
 
@@ -46,7 +46,7 @@ module Organizer
     collected = Hash.new
     data[:median_household_income].each do |row|
       years = row[:timeframe].split("-")
-      years.map!{|year| year.to_i}
+      years.map!{|year| year}
       collected[years] = row[:data].to_f
     end
     collected
@@ -56,8 +56,8 @@ module Organizer
     return nil unless data[:children_in_poverty]
     collected = Hash.new
     data[:children_in_poverty].each do |row|
-      year = row[:timeframe].to_i
-      collected[year] = row[:data].to_f if row[:dataformat] == "Percent"
+      year = row[:timeframe]
+      collected[year] = row[:data] if row[:dataformat] == "Percent"
     end
     collected
   end
@@ -68,8 +68,8 @@ module Organizer
     data[:free_or_reduced_price_lunch].each do |row|
       next unless row[:poverty_level] == "Eligible for Free or Reduced Lunch"
       year = row[:timeframe].to_i
-      collected[year] = {row[:dataformat].downcase.to_sym => row[:data].to_f.round(3)} unless collected[year]
-      collected[year][row[:dataformat].downcase.to_sym] = row[:data].to_f.round(3)
+      collected[year] = {row[:dataformat].downcase.to_sym => row[:data]} unless collected[year]
+      collected[year][row[:dataformat].downcase.to_sym] = row[:data]
       collected[year][:total] = collected[year].delete(:number) if row[:dataformat] == "Number"
     end
     collected
@@ -79,7 +79,7 @@ module Organizer
     return nil unless data[:title_i]
     collected = Hash.new
     data[:title_i].each do |row|
-      collected[row[:timeframe].to_i] = row[:data].to_f
+      collected[row[:timeframe]] = row[:data]
     end
     collected
   end
