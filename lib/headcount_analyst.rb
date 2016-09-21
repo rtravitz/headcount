@@ -8,6 +8,53 @@ class HeadcountAnalyst
     @dr = district_repository
   end
 
+  def graduation_variation(district, against)
+    numerator = @dr.find_by_name(district.upcase).enrollment
+    denominator = @dr.find_by_name(against[:against]).enrollment
+    numerator_average = average(numerator.graduation_rate_by_year.values)
+    denominator_average = average(denominator.graduation_rate_by_year.values)
+    (numerator_average / denominator_average).round(3)
+  end
+
+  def high_income_disparity
+    state_profile = @dr.find_economic_profile("COLORADO")
+    co_median = state_profile.median_household_income_average
+    co_poverty = find_state_poverty_average
+    create_income_disparity_result_set(co_median, co_poverty)
+  end
+
+  def high_poverty_and_high_school_graduation
+    co_lunch = find_state_lunch_average
+    co_poverty = find_state_poverty_average
+    co_graduation = find_average_high_school_graduation
+    create_poverty_and_grad_result_set(co_lunch, co_poverty, co_graduation)
+  end
+
+  def kindergarten_participation_against_high_school_graduation(name)
+    numer = kindergarten_participation_rate_variation(name, against: "COLORADO")
+    denominator = graduation_variation(name, against: "COLORADO")
+    (numer / denominator).round(3)
+  end
+
+  def kindergarten_participation_against_household_income(input)
+    state = {against: "COLORADO"}
+    kinder = kindergarten_participation_rate_variation(input, state)
+    income = median_income_variation(input, state)
+    (kinder / income).round(3)
+  end
+
+  def kindergarten_participation_correlates_with_high_school_graduation(command)
+    return check_statewide               if statewide?(command)
+    return check_one_district(command)   if one_district?(command)
+    return check_multi_district(command) if multi_district?(command)
+  end
+
+  def kindergarten_participation_correlates_with_household_income(input)
+    return one_district_correlation(input)  if one_district?(input)
+    return statewide_correlation            if statewide?(input)
+    return across_correlation(input)        if input.has_key?(:across)
+  end
+
   def kindergarten_participation_rate_variation(district, against)
     numerator = @dr.find_by_name(district.upcase).enrollment
     numerator = numerator.kindergarten_participation_by_year.values
@@ -29,74 +76,6 @@ class HeadcountAnalyst
     end
     result
   end
-
-  def graduation_variation(district, against)
-    numerator = @dr.find_by_name(district.upcase).enrollment
-    denominator = @dr.find_by_name(against[:against]).enrollment
-    numerator_average = average(numerator.graduation_rate_by_year.values)
-    denominator_average = average(denominator.graduation_rate_by_year.values)
-    (numerator_average / denominator_average).round(3)
-  end
-
-  def kindergarten_participation_against_high_school_graduation(name)
-    numer = kindergarten_participation_rate_variation(name, against: "COLORADO")
-    denominator = graduation_variation(name, against: "COLORADO")
-    (numer / denominator).round(3)
-  end
-
-  def kindergarten_participation_correlates_with_high_school_graduation(command)
-    return check_statewide               if statewide?(command)
-    return check_one_district(command)   if one_district?(command)
-    return check_multi_district(command) if multi_district?(command)
-  end
-
-  def kindergarten_participation_against_household_income(input)
-    state = {against: "COLORADO"}
-    kinder = kindergarten_participation_rate_variation(input, state)
-    income = median_income_variation(input, state)
-    (kinder / income).round(3)
-  end
-
-  def kindergarten_participation_correlates_with_household_income(input)
-    return one_district_correlation(input)  if one_district?(input)
-    return statewide_correlation            if statewide?(input)
-    return across_correlation(input)        if input.has_key?(:across)
-  end
-
-  def high_income_disparity
-    state_profile = @dr.find_economic_profile("COLORADO")
-    co_median = state_profile.median_household_income_average
-    co_poverty = find_state_poverty_average
-    state_average = ResultEntry.new({median_household_income: co_median,
-      children_in_poverty: co_poverty})
-    matches = Array.new
-    @dr.ecr.repository.each do |name, profile|
-      if (profile.median_household_income_average > co_median &&
-         profile.children_in_poverty_average > co_poverty)
-         matches << create_income_disparity_entry(profile)
-      end
-    end
-    ResultSet.new(matching_districts: matches, statewide_average: state_average)
-  end
-
-  def high_poverty_and_high_school_graduation
-    co_lunch = find_state_lunch_average
-    co_poverty = find_state_poverty_average
-    co_graduation = find_average_high_school_graduation
-    state_average = ResultEntry.new({free_or_reduced_price_lunch: co_lunch,
-                                    children_in_poverty: co_poverty,
-                                    high_school_graduation: co_graduation})
-    matches = Array.new
-    @dr.dr.each do |name, district|
-      check = meets_poverty_and_high_school_threshold?( district, co_lunch,
-                                            co_poverty, co_graduation)
-      if check
-        matches << create_high_poverty_entry(district)
-      end
-    end
-    ResultSet.new(matching_districts: matches, statewide_average: state_average)
-  end
-
 
   private
 
@@ -152,6 +131,18 @@ class HeadcountAnalyst
       )
   end
 
+  def create_income_disparity_result_set(co_median, co_poverty)
+    state_average = ResultEntry.new({median_household_income: co_median,
+      children_in_poverty: co_poverty})
+    matches = @dr.ecr.repository.map do |name, profile|
+      if (profile.median_household_income_average > co_median &&
+        profile.children_in_poverty_average > co_poverty)
+        create_income_disparity_entry(profile)
+      end
+    end.compact
+    ResultSet.new(matching_districts: matches, statewide_average: state_average)
+  end
+
   def create_high_poverty_entry(district)
     lunch = district.economic_profile.free_or_reduced_price_lunch_average
     poverty = district.economic_profile.children_in_poverty_average
@@ -162,6 +153,18 @@ class HeadcountAnalyst
       children_in_poverty: poverty,
       high_school_graduation: graduation}
       )
+  end
+
+  def create_poverty_and_grad_result_set( co_lunch, co_poverty, co_graduation)
+    state_average = ResultEntry.new({free_or_reduced_price_lunch: co_lunch,
+                                    children_in_poverty: co_poverty,
+                                    high_school_graduation: co_graduation})
+    matches = @dr.dr.map do |name, district|
+      check = meets_poverty_and_high_school_threshold?(district, co_lunch,
+                                                      co_poverty, co_graduation)
+      create_high_poverty_entry(district) if check
+    end.compact
+    ResultSet.new(matching_districts: matches, statewide_average: state_average)
   end
 
   def find_average_high_school_graduation
