@@ -1,6 +1,8 @@
 require 'csv'
+require_relative 'sanitizer'
 
 module Loader
+  include Sanitizer
 
   def self.load_data(path)
     all_data = get_all_data(path)
@@ -17,6 +19,8 @@ module Loader
       contents = parse_csv(file).map(&:to_h)
       contents.map do |row|
         row[:source] = level
+        row = Sanitizer.sanitize(row)
+        require "pry"; binding.pry
         row
       end
     end
