@@ -14,7 +14,7 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2016-09-20T19:03:03-06:00">2016-09-20T19:03:03-06:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2016-09-20T19:12:01-06:00">2016-09-20T19:12:01-06:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,15 +25,15 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         2398.48
+         2386.45
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>28</b> files in total.
-    <b>793</b> relevant lines. 
-    <span class="green"><b>789</b> lines covered</span> and
+    <b>797</b> relevant lines. 
+    <span class="green"><b>793</b> lines covered</span> and
     <span class="red"><b>4</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -122,12 +122,12 @@
       
       <tr>
         <td class="strong"><a href="#dd1117bd39ae32f852f00a4938332a3076e542a3" class="src_link" title="lib/headcount_analyst.rb">lib/headcount_analyst.rb</a></td>
-        <td class="green strong">99.28 %</td>
-        <td>228</td>
-        <td>138</td>
-        <td>137</td>
+        <td class="green strong">99.3 %</td>
+        <td>235</td>
+        <td>142</td>
+        <td>141</td>
         <td>1</td>
-        <td>149.2</td>
+        <td>145.0</td>
       </tr>
       
       <tr>
@@ -2065,10 +2065,10 @@
         <div class="source_table" id="dd1117bd39ae32f852f00a4938332a3076e542a3">
   <div class="header">
     <h3>lib/headcount_analyst.rb</h3>
-    <h4><span class="green">99.28 %</span> covered</h4>
+    <h4><span class="green">99.3 %</span> covered</h4>
     <div>
-      <b>138</b> relevant lines. 
-      <span class="green"><b>137</b> lines covered</span> and
+      <b>142</b> relevant lines. 
+      <span class="green"><b>141</b> lines covered</span> and
       <span class="red"><b>1</b> lines missed.</span>
     </div>
   </div>
@@ -2505,577 +2505,577 @@
         <li class="covered" data-hits="1" data-linenumber="72">
           <span class="hits">1</span>
           
-          <code class="ruby">  def kindergarten_participation_correlates_with_household_income(input)</code>
+          <code class="ruby">  def one_district_correlation(input)</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="73">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="2" data-linenumber="73">
+          <span class="hits">2</span>
           
-          <code class="ruby">    if one_district?(input)</code>
+          <code class="ruby">    num = (kindergarten_participation_against_household_income(input[:for]))</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="74">
           <span class="hits">2</span>
           
-          <code class="ruby">      return correlates?(kindergarten_participation_against_household_income(input[:for]))</code>
+          <code class="ruby">    correlates?(num)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="75">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">  end</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="76">
-          <span class="hits">2</span>
+        <li class="never" data-hits="" data-linenumber="76">
           
-          <code class="ruby">    if statewide?(input)</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="77">
           <span class="hits">1</span>
           
-          <code class="ruby">      collected = @dr.dr.map do |name, district|</code>
+          <code class="ruby">  def statewide_correlation</code>
         </li>
       
-        <li class="covered" data-hits="181" data-linenumber="78">
-          <span class="hits">181</span>
-          
-          <code class="ruby">        correlates?(kindergarten_participation_against_household_income(name))</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="79">
-          
-          
-          <code class="ruby">      end</code>
-        </li>
-      
-        <li class="covered" data-hits="182" data-linenumber="80">
-          <span class="hits">182</span>
-          
-          <code class="ruby">      grouped = collected.group_by{|boolean| boolean}</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="81">
+        <li class="covered" data-hits="1" data-linenumber="78">
           <span class="hits">1</span>
           
-          <code class="ruby">      return (grouped[true].count.to_f / collected.count) &gt;= 0.7 ? true : false</code>
+          <code class="ruby">    collected = @dr.dr.map do |name, district|</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="82">
+        <li class="covered" data-hits="181" data-linenumber="79">
+          <span class="hits">181</span>
+          
+          <code class="ruby">      correlates?(kindergarten_participation_against_household_income(name))</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="80">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="83">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="182" data-linenumber="81">
+          <span class="hits">182</span>
           
-          <code class="ruby">    if input.has_key?(:across)</code>
+          <code class="ruby">    grouped = collected.group_by{|boolean| boolean}</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="84">
+        <li class="covered" data-hits="1" data-linenumber="82">
           <span class="hits">1</span>
           
-          <code class="ruby">      collected = input[:across].map do |name|</code>
+          <code class="ruby">    return (grouped[true].count.to_f / collected.count) &gt;= 0.7 ? true : false</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="85">
+        <li class="never" data-hits="" data-linenumber="83">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="84">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="85">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def across_correlation(input)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="86">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    collected = input[:across].map do |name|</code>
+        </li>
+      
+        <li class="covered" data-hits="4" data-linenumber="87">
           <span class="hits">4</span>
           
-          <code class="ruby">        correlates?(kindergarten_participation_against_household_income(name))</code>
+          <code class="ruby">      correlates?(kindergarten_participation_against_household_income(name))</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="86">
+        <li class="never" data-hits="" data-linenumber="88">
           
           
-          <code class="ruby">      end</code>
+          <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="87">
+        <li class="covered" data-hits="5" data-linenumber="89">
           <span class="hits">5</span>
           
-          <code class="ruby">      grouped = collected.group_by{|boolean| boolean}</code>
+          <code class="ruby">    grouped = collected.group_by{|boolean| boolean}</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="88">
+        <li class="covered" data-hits="1" data-linenumber="90">
           <span class="hits">1</span>
           
-          <code class="ruby">      if grouped[true].nil?</code>
+          <code class="ruby">    if grouped[true].nil?</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="89">
+        <li class="covered" data-hits="1" data-linenumber="91">
           <span class="hits">1</span>
           
-          <code class="ruby">        return false</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="90">
-          
-          
-          <code class="ruby">      else</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="91">
-          
-          
-          <code class="ruby">        return (grouped[true].count.to_f / collected.count) &gt;= 0.7 ? true : false</code>
+          <code class="ruby">      false</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="92">
           
           
-          <code class="ruby">      end</code>
+          <code class="ruby">    else</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="93">
+        <li class="missed" data-hits="0" data-linenumber="93">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">      (grouped[true].count.to_f / collected.count) &gt;= 0.7 ? true : false</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="94">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="95">
           
           
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="96">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def correlates?(num)</code>
-        </li>
-      
-        <li class="covered" data-hits="187" data-linenumber="97">
-          <span class="hits">187</span>
-          
-          <code class="ruby">    num &gt;= 0.6 &amp;&amp; num &lt;= 1.5 ? true : false</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="98">
-          
-          
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="99">
+        <li class="never" data-hits="" data-linenumber="96">
           
           
           <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="97">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def kindergarten_participation_correlates_with_household_income(input)</code>
+        </li>
+      
+        <li class="covered" data-hits="4" data-linenumber="98">
+          <span class="hits">4</span>
+          
+          <code class="ruby">    return one_district_correlation(input)  if one_district?(input)</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="99">
+          <span class="hits">2</span>
+          
+          <code class="ruby">    return statewide_correlation            if statewide?(input)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="100">
           <span class="hits">1</span>
           
-          <code class="ruby">  def high_income_disparity</code>
+          <code class="ruby">    return across_correlation(input)        if input.has_key?(:across)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="101">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="101">
           
-          <code class="ruby">    state_profile = @dr.find_economic_profile(&quot;COLORADO&quot;)</code>
+          
+          <code class="ruby">  end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="102">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="102">
           
-          <code class="ruby">    co_median = state_profile.median_household_income_average</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="103">
           <span class="hits">1</span>
           
-          <code class="ruby">    co_poverty = find_state_poverty_average</code>
+          <code class="ruby">  def correlates?(num)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="104">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="187" data-linenumber="104">
+          <span class="hits">187</span>
           
-          <code class="ruby">    state_average = ResultEntry.new({median_household_income: co_median,</code>
+          <code class="ruby">    num &gt;= 0.6 &amp;&amp; num &lt;= 1.5 ? true : false</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="105">
           
           
-          <code class="ruby">      children_in_poverty: co_poverty})</code>
+          <code class="ruby">  end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="106">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="106">
           
-          <code class="ruby">    matches = Array.new</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="107">
           <span class="hits">1</span>
           
-          <code class="ruby">    @dr.ecr.repository.each do |name, profile|</code>
+          <code class="ruby">  def high_income_disparity</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="108">
-          
-          
-          <code class="ruby">      if (profile.median_household_income_average &gt; co_median &amp;&amp;</code>
-        </li>
-      
-        <li class="covered" data-hits="181" data-linenumber="109">
-          <span class="hits">181</span>
-          
-          <code class="ruby">         profile.children_in_poverty_average &gt; co_poverty)</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="110">
-          <span class="hits">2</span>
-          
-          <code class="ruby">         matches &lt;&lt; create_income_disparity_entry(profile)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="111">
-          
-          
-          <code class="ruby">      end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="112">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="113">
+        <li class="covered" data-hits="1" data-linenumber="108">
           <span class="hits">1</span>
           
-          <code class="ruby">    ResultSet.new(matching_districts: matches, statewide_average: state_average)</code>
+          <code class="ruby">    state_profile = @dr.find_economic_profile(&quot;COLORADO&quot;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="114">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="115">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="116">
+        <li class="covered" data-hits="1" data-linenumber="109">
           <span class="hits">1</span>
           
-          <code class="ruby">  def create_income_disparity_entry(profile)</code>
+          <code class="ruby">    co_median = state_profile.median_household_income_average</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="117">
-          <span class="hits">2</span>
-          
-          <code class="ruby">    ResultEntry.new(</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="118">
-          
-          
-          <code class="ruby">            { name: profile.name,</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="119">
-          
-          
-          <code class="ruby">              median_household_income: profile.median_household_income_average,</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="120">
-          
-          
-          <code class="ruby">              children_in_poverty: profile.children_in_poverty_average}</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="121">
-          
-          
-          <code class="ruby">      )</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="122">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="123">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="124">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def high_poverty_and_high_school_graduation</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="125">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    co_lunch = find_state_lunch_average</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="126">
+        <li class="covered" data-hits="1" data-linenumber="110">
           <span class="hits">1</span>
           
           <code class="ruby">    co_poverty = find_state_poverty_average</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="127">
+        <li class="covered" data-hits="1" data-linenumber="111">
           <span class="hits">1</span>
           
-          <code class="ruby">    co_graduation = find_average_high_school_graduation</code>
+          <code class="ruby">    state_average = ResultEntry.new({median_household_income: co_median,</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="128">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="112">
           
-          <code class="ruby">    state_average = ResultEntry.new({free_or_reduced_price_lunch: co_lunch,</code>
+          
+          <code class="ruby">      children_in_poverty: co_poverty})</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="129">
-          
-          
-          <code class="ruby">                                    children_in_poverty: co_poverty,</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="130">
-          
-          
-          <code class="ruby">                                    high_school_graduation: co_graduation})</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="131">
+        <li class="covered" data-hits="1" data-linenumber="113">
           <span class="hits">1</span>
           
           <code class="ruby">    matches = Array.new</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="132">
+        <li class="covered" data-hits="1" data-linenumber="114">
           <span class="hits">1</span>
           
-          <code class="ruby">    @dr.dr.each do |name, district|</code>
+          <code class="ruby">    @dr.ecr.repository.each do |name, profile|</code>
         </li>
       
-        <li class="covered" data-hits="181" data-linenumber="133">
+        <li class="never" data-hits="" data-linenumber="115">
+          
+          
+          <code class="ruby">      if (profile.median_household_income_average &gt; co_median &amp;&amp;</code>
+        </li>
+      
+        <li class="covered" data-hits="181" data-linenumber="116">
           <span class="hits">181</span>
           
-          <code class="ruby">      check = meets_poverty_and_high_school_threshold?( district, co_lunch,</code>
+          <code class="ruby">         profile.children_in_poverty_average &gt; co_poverty)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="134">
+        <li class="covered" data-hits="2" data-linenumber="117">
+          <span class="hits">2</span>
           
-          
-          <code class="ruby">                                            co_poverty, co_graduation)</code>
+          <code class="ruby">         matches &lt;&lt; create_income_disparity_entry(profile)</code>
         </li>
       
-        <li class="covered" data-hits="181" data-linenumber="135">
-          <span class="hits">181</span>
-          
-          <code class="ruby">      if check</code>
-        </li>
-      
-        <li class="covered" data-hits="55" data-linenumber="136">
-          <span class="hits">55</span>
-          
-          <code class="ruby">        matches &lt;&lt; create_high_poverty_entry(district)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="137">
+        <li class="never" data-hits="" data-linenumber="118">
           
           
           <code class="ruby">      end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="138">
+        <li class="never" data-hits="" data-linenumber="119">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="139">
+        <li class="covered" data-hits="1" data-linenumber="120">
           <span class="hits">1</span>
           
           <code class="ruby">    ResultSet.new(matching_districts: matches, statewide_average: state_average)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="140">
+        <li class="never" data-hits="" data-linenumber="121">
           
           
           <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="122">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="123">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def create_income_disparity_entry(profile)</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="124">
+          <span class="hits">2</span>
+          
+          <code class="ruby">    ResultEntry.new(</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="125">
+          
+          
+          <code class="ruby">            { name: profile.name,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="126">
+          
+          
+          <code class="ruby">              median_household_income: profile.median_household_income_average,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="127">
+          
+          
+          <code class="ruby">              children_in_poverty: profile.children_in_poverty_average}</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="128">
+          
+          
+          <code class="ruby">      )</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="129">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="130">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="131">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def high_poverty_and_high_school_graduation</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="132">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    co_lunch = find_state_lunch_average</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="133">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    co_poverty = find_state_poverty_average</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="134">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    co_graduation = find_average_high_school_graduation</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="135">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    state_average = ResultEntry.new({free_or_reduced_price_lunch: co_lunch,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="136">
+          
+          
+          <code class="ruby">                                    children_in_poverty: co_poverty,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="137">
+          
+          
+          <code class="ruby">                                    high_school_graduation: co_graduation})</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="138">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    matches = Array.new</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="139">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    @dr.dr.each do |name, district|</code>
+        </li>
+      
+        <li class="covered" data-hits="181" data-linenumber="140">
+          <span class="hits">181</span>
+          
+          <code class="ruby">      check = meets_poverty_and_high_school_threshold?( district, co_lunch,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="141">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">                                            co_poverty, co_graduation)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="142">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="181" data-linenumber="142">
+          <span class="hits">181</span>
           
-          <code class="ruby">  def create_high_poverty_entry(district)</code>
+          <code class="ruby">      if check</code>
         </li>
       
         <li class="covered" data-hits="55" data-linenumber="143">
           <span class="hits">55</span>
           
-          <code class="ruby">    lunch = district.economic_profile.free_or_reduced_price_lunch_average</code>
+          <code class="ruby">        matches &lt;&lt; create_high_poverty_entry(district)</code>
         </li>
       
-        <li class="covered" data-hits="55" data-linenumber="144">
-          <span class="hits">55</span>
+        <li class="never" data-hits="" data-linenumber="144">
           
-          <code class="ruby">    poverty = district.economic_profile.children_in_poverty_average</code>
+          
+          <code class="ruby">      end</code>
         </li>
       
-        <li class="covered" data-hits="55" data-linenumber="145">
-          <span class="hits">55</span>
-          
-          <code class="ruby">    graduation = district.enrollment.graduation_rate_average</code>
-        </li>
-      
-        <li class="covered" data-hits="55" data-linenumber="146">
-          <span class="hits">55</span>
-          
-          <code class="ruby">    ResultEntry.new(</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="147">
-          
-          
-          <code class="ruby">      {name: district.name,</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="148">
-          
-          
-          <code class="ruby">      free_or_reduced_price_lunch: lunch,</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="149">
-          
-          
-          <code class="ruby">      children_in_poverty: poverty,</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="150">
-          
-          
-          <code class="ruby">      high_school_graduation: graduation}</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="151">
-          
-          
-          <code class="ruby">    )</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="152">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="153">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="154">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def meets_poverty_and_high_school_threshold?(district, lunch, poverty, grad)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="155">
-          
-          
-          <code class="ruby">    if (district.economic_profile.free_or_reduced_price_lunch_average &gt; lunch &amp;&amp;</code>
-        </li>
-      
-        <li class="covered" data-hits="181" data-linenumber="156">
-          <span class="hits">181</span>
-          
-          <code class="ruby">       district.economic_profile.children_in_poverty_average &gt; poverty &amp;&amp;</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="157">
-          
-          
-          <code class="ruby">       district.enrollment.graduation_rate_average &gt; grad)</code>
-        </li>
-      
-        <li class="covered" data-hits="55" data-linenumber="158">
-          <span class="hits">55</span>
-          
-          <code class="ruby">      return true</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="159">
-          
-          
-          <code class="ruby">    else</code>
-        </li>
-      
-        <li class="covered" data-hits="126" data-linenumber="160">
-          <span class="hits">126</span>
-          
-          <code class="ruby">      return false</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="161">
+        <li class="never" data-hits="" data-linenumber="145">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="162">
+        <li class="covered" data-hits="1" data-linenumber="146">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    ResultSet.new(matching_districts: matches, statewide_average: state_average)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="147">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="163">
+        <li class="never" data-hits="" data-linenumber="148">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="164">
+        <li class="covered" data-hits="1" data-linenumber="149">
           <span class="hits">1</span>
           
-          <code class="ruby">  def find_state_lunch_average</code>
+          <code class="ruby">  def create_high_poverty_entry(district)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="165">
+        <li class="covered" data-hits="55" data-linenumber="150">
+          <span class="hits">55</span>
+          
+          <code class="ruby">    lunch = district.economic_profile.free_or_reduced_price_lunch_average</code>
+        </li>
+      
+        <li class="covered" data-hits="55" data-linenumber="151">
+          <span class="hits">55</span>
+          
+          <code class="ruby">    poverty = district.economic_profile.children_in_poverty_average</code>
+        </li>
+      
+        <li class="covered" data-hits="55" data-linenumber="152">
+          <span class="hits">55</span>
+          
+          <code class="ruby">    graduation = district.enrollment.graduation_rate_average</code>
+        </li>
+      
+        <li class="covered" data-hits="55" data-linenumber="153">
+          <span class="hits">55</span>
+          
+          <code class="ruby">    ResultEntry.new(</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="154">
+          
+          
+          <code class="ruby">      {name: district.name,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="155">
+          
+          
+          <code class="ruby">      free_or_reduced_price_lunch: lunch,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="156">
+          
+          
+          <code class="ruby">      children_in_poverty: poverty,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="157">
+          
+          
+          <code class="ruby">      high_school_graduation: graduation}</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="158">
+          
+          
+          <code class="ruby">    )</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="159">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="160">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="161">
           <span class="hits">1</span>
           
-          <code class="ruby">    state = @dr.find_economic_profile(&quot;COLORADO&quot;)</code>
+          <code class="ruby">  def meets_poverty_and_high_school_threshold?(district, lunch, poverty, grad)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="166">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="162">
           
-          <code class="ruby">    sum = state.information[:free_or_reduced_price_lunch].map do |year, data|</code>
+          
+          <code class="ruby">    if (district.economic_profile.free_or_reduced_price_lunch_average &gt; lunch &amp;&amp;</code>
         </li>
       
-        <li class="covered" data-hits="15" data-linenumber="167">
-          <span class="hits">15</span>
+        <li class="covered" data-hits="181" data-linenumber="163">
+          <span class="hits">181</span>
           
-          <code class="ruby">      data[:percent]</code>
+          <code class="ruby">       district.economic_profile.children_in_poverty_average &gt; poverty &amp;&amp;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="164">
+          
+          
+          <code class="ruby">       district.enrollment.graduation_rate_average &gt; grad)</code>
+        </li>
+      
+        <li class="covered" data-hits="55" data-linenumber="165">
+          <span class="hits">55</span>
+          
+          <code class="ruby">      return true</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="166">
+          
+          
+          <code class="ruby">    else</code>
+        </li>
+      
+        <li class="covered" data-hits="126" data-linenumber="167">
+          <span class="hits">126</span>
+          
+          <code class="ruby">      return false</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="168">
@@ -3084,361 +3084,403 @@
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="169">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="169">
           
-          <code class="ruby">    sum.reduce(:+) / sum.count</code>
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="170">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="171">
+        <li class="covered" data-hits="1" data-linenumber="171">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">  def find_state_lunch_average</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="172">
           <span class="hits">1</span>
           
-          <code class="ruby">  def find_average_high_school_graduation</code>
+          <code class="ruby">    state = @dr.find_economic_profile(&quot;COLORADO&quot;)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="173">
           <span class="hits">1</span>
           
-          <code class="ruby">    state = @dr.find_enrollment(&quot;COLORADO&quot;)</code>
+          <code class="ruby">    sum = state.information[:free_or_reduced_price_lunch].map do |year, data|</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="174">
-          <span class="hits">6</span>
+        <li class="covered" data-hits="15" data-linenumber="174">
+          <span class="hits">15</span>
           
-          <code class="ruby">    sum = state.information[:high_school_graduation].map{|year, rate| rate}</code>
+          <code class="ruby">      data[:percent]</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="175">
+        <li class="never" data-hits="" data-linenumber="175">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="176">
           <span class="hits">1</span>
           
           <code class="ruby">    sum.reduce(:+) / sum.count</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="176">
+        <li class="never" data-hits="" data-linenumber="177">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="177">
+        <li class="never" data-hits="" data-linenumber="178">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="178">
+        <li class="covered" data-hits="1" data-linenumber="179">
           <span class="hits">1</span>
           
-          <code class="ruby">  def find_state_poverty_average</code>
+          <code class="ruby">  def find_average_high_school_graduation</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="179">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="180">
+          <span class="hits">1</span>
           
-          <code class="ruby">    averages = @dr.ecr.repository.map do |name, profile|</code>
+          <code class="ruby">    state = @dr.find_enrollment(&quot;COLORADO&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="362" data-linenumber="180">
-          <span class="hits">362</span>
+        <li class="covered" data-hits="6" data-linenumber="181">
+          <span class="hits">6</span>
           
-          <code class="ruby">      unless profile.information[:children_in_poverty].nil?</code>
+          <code class="ruby">    sum = state.information[:high_school_graduation].map{|year, rate| rate}</code>
         </li>
       
-        <li class="covered" data-hits="360" data-linenumber="181">
-          <span class="hits">360</span>
+        <li class="covered" data-hits="1" data-linenumber="182">
+          <span class="hits">1</span>
           
-          <code class="ruby">        profile.children_in_poverty_average</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="182">
-          
-          
-          <code class="ruby">      end</code>
+          <code class="ruby">    sum.reduce(:+) / sum.count</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="183">
           
           
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="184">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="185">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def find_state_poverty_average</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="186">
+          <span class="hits">2</span>
+          
+          <code class="ruby">    averages = @dr.ecr.repository.map do |name, profile|</code>
+        </li>
+      
+        <li class="covered" data-hits="362" data-linenumber="187">
+          <span class="hits">362</span>
+          
+          <code class="ruby">      unless profile.information[:children_in_poverty].nil?</code>
+        </li>
+      
+        <li class="covered" data-hits="360" data-linenumber="188">
+          <span class="hits">360</span>
+          
+          <code class="ruby">        profile.children_in_poverty_average</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="189">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="190">
+          
+          
           <code class="ruby">    end.compact</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="184">
+        <li class="covered" data-hits="2" data-linenumber="191">
           <span class="hits">2</span>
           
           <code class="ruby">    averages.reduce(:+) / averages.count</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="185">
+        <li class="never" data-hits="" data-linenumber="192">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="186">
+        <li class="never" data-hits="" data-linenumber="193">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="187">
+        <li class="covered" data-hits="1" data-linenumber="194">
           <span class="hits">1</span>
           
           <code class="ruby">  def check_statewide</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="188">
+        <li class="covered" data-hits="1" data-linenumber="195">
           <span class="hits">1</span>
           
           <code class="ruby">    values = @dr.dr.map do |name, district|</code>
         </li>
       
-        <li class="covered" data-hits="181" data-linenumber="189">
+        <li class="covered" data-hits="181" data-linenumber="196">
           <span class="hits">181</span>
           
           <code class="ruby">      item = kindergarten_participation_against_high_school_graduation(name)</code>
         </li>
       
-        <li class="covered" data-hits="181" data-linenumber="190">
+        <li class="covered" data-hits="181" data-linenumber="197">
           <span class="hits">181</span>
           
           <code class="ruby">      return_check(item)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="191">
+        <li class="never" data-hits="" data-linenumber="198">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="182" data-linenumber="192">
+        <li class="covered" data-hits="182" data-linenumber="199">
           <span class="hits">182</span>
           
           <code class="ruby">    grouped = values.group_by{|boolean| boolean}</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="193">
+        <li class="covered" data-hits="1" data-linenumber="200">
           <span class="hits">1</span>
           
           <code class="ruby">    (grouped[true].count / values.count) &gt;= 0.7 ? true : false</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="194">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="195">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="196">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def check_one_district(command)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="197">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    c = command[:for]</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="198">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    value = kindergarten_participation_against_high_school_graduation(c)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="199">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    return_check(value)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="200">
-          
-          
-          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="201">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">  end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="202">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="202">
           
-          <code class="ruby">  def check_multi_district(command)</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="203">
           <span class="hits">1</span>
           
+          <code class="ruby">  def check_one_district(command)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="204">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    c = command[:for]</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="205">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    value = kindergarten_participation_against_high_school_graduation(c)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="206">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    return_check(value)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="207">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="208">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="209">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def check_multi_district(command)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="210">
+          <span class="hits">1</span>
+          
           <code class="ruby">    values = command[:across].map do |name|</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="204">
+        <li class="covered" data-hits="3" data-linenumber="211">
           <span class="hits">3</span>
           
           <code class="ruby">      v = kindergarten_participation_against_high_school_graduation(name.upcase)</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="205">
+        <li class="covered" data-hits="3" data-linenumber="212">
           <span class="hits">3</span>
           
           <code class="ruby">      return_check(v)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="206">
+        <li class="never" data-hits="" data-linenumber="213">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="207">
+        <li class="covered" data-hits="4" data-linenumber="214">
           <span class="hits">4</span>
           
           <code class="ruby">    grouped = values.group_by{|boolean| boolean}</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="208">
+        <li class="covered" data-hits="1" data-linenumber="215">
           <span class="hits">1</span>
           
           <code class="ruby">    (grouped[true].count / values.count) &gt;= 0.7 ? true : false</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="209">
+        <li class="never" data-hits="" data-linenumber="216">
           
           
           <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="210">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="211">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def statewide?(command)</code>
-        </li>
-      
-        <li class="covered" data-hits="5" data-linenumber="212">
-          <span class="hits">5</span>
-          
-          <code class="ruby">    command.has_value?(&#39;STATEWIDE&#39;)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="213">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="214">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="215">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def one_district?(command)</code>
-        </li>
-      
-        <li class="covered" data-hits="6" data-linenumber="216">
-          <span class="hits">6</span>
-          
-          <code class="ruby">    command.has_key?(:for) &amp;&amp; !command.has_value?(&#39;STATEWIDE&#39;)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="217">
           
           
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="218">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="219">
+        <li class="covered" data-hits="1" data-linenumber="218">
           <span class="hits">1</span>
           
-          <code class="ruby">  def multi_district?(command)</code>
+          <code class="ruby">  def statewide?(command)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="220">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="5" data-linenumber="219">
+          <span class="hits">5</span>
           
-          <code class="ruby">    !command.has_key?(:for) &amp;&amp; !command.has_value?(&#39;STATEWIDE&#39;)</code>
+          <code class="ruby">    command.has_value?(&#39;STATEWIDE&#39;)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="220">
+          
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="221">
           
           
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="222">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def one_district?(command)</code>
+        </li>
+      
+        <li class="covered" data-hits="6" data-linenumber="223">
+          <span class="hits">6</span>
+          
+          <code class="ruby">    command.has_key?(:for) &amp;&amp; !command.has_value?(&#39;STATEWIDE&#39;)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="224">
+          
+          
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="222">
+        <li class="never" data-hits="" data-linenumber="225">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="223">
+        <li class="covered" data-hits="1" data-linenumber="226">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def multi_district?(command)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="227">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    !command.has_key?(:for) &amp;&amp; !command.has_value?(&#39;STATEWIDE&#39;)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="228">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="229">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="230">
           <span class="hits">1</span>
           
           <code class="ruby">  def return_check(value)</code>
         </li>
       
-        <li class="covered" data-hits="185" data-linenumber="224">
+        <li class="covered" data-hits="185" data-linenumber="231">
           <span class="hits">185</span>
           
           <code class="ruby">    return true if value &lt;= 1.5 &amp;&amp; value &gt;= 0.6</code>
         </li>
       
-        <li class="covered" data-hits="89" data-linenumber="225">
+        <li class="covered" data-hits="89" data-linenumber="232">
           <span class="hits">89</span>
           
           <code class="ruby">    return false</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="226">
+        <li class="never" data-hits="" data-linenumber="233">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="227">
+        <li class="never" data-hits="" data-linenumber="234">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="228">
+        <li class="never" data-hits="" data-linenumber="235">
           
           
           <code class="ruby">end</code>

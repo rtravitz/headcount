@@ -69,28 +69,35 @@ class HeadcountAnalyst
     (kinder / income).round(3)
   end
 
+  def one_district_correlation(input)
+    num = (kindergarten_participation_against_household_income(input[:for]))
+    correlates?(num)
+  end
+
+  def statewide_correlation
+    collected = @dr.dr.map do |name, district|
+      correlates?(kindergarten_participation_against_household_income(name))
+    end
+    grouped = collected.group_by{|boolean| boolean}
+    return (grouped[true].count.to_f / collected.count) >= 0.7 ? true : false
+  end
+
+  def across_correlation(input)
+    collected = input[:across].map do |name|
+      correlates?(kindergarten_participation_against_household_income(name))
+    end
+    grouped = collected.group_by{|boolean| boolean}
+    if grouped[true].nil?
+      false
+    else
+      (grouped[true].count.to_f / collected.count) >= 0.7 ? true : false
+    end
+  end
+
   def kindergarten_participation_correlates_with_household_income(input)
-    if one_district?(input)
-      return correlates?(kindergarten_participation_against_household_income(input[:for]))
-    end
-    if statewide?(input)
-      collected = @dr.dr.map do |name, district|
-        correlates?(kindergarten_participation_against_household_income(name))
-      end
-      grouped = collected.group_by{|boolean| boolean}
-      return (grouped[true].count.to_f / collected.count) >= 0.7 ? true : false
-    end
-    if input.has_key?(:across)
-      collected = input[:across].map do |name|
-        correlates?(kindergarten_participation_against_household_income(name))
-      end
-      grouped = collected.group_by{|boolean| boolean}
-      if grouped[true].nil?
-        return false
-      else
-        return (grouped[true].count.to_f / collected.count) >= 0.7 ? true : false
-      end
-    end
+    return one_district_correlation(input)  if one_district?(input)
+    return statewide_correlation            if statewide?(input)
+    return across_correlation(input)        if input.has_key?(:across)
   end
 
   def correlates?(num)
