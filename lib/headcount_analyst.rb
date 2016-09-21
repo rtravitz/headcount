@@ -44,9 +44,9 @@ class HeadcountAnalyst
   end
 
   def kindergarten_participation_correlates_with_high_school_graduation(command)
-    return check_statewide               if statewide?(command)
-    return check_one_district(command)   if one_district?(command)
-    return check_multi_district(command) if multi_district?(command)
+    return check_statewide                  if statewide?(command)
+    return check_one_district(command)      if one_district?(command)
+    return check_multi_district(command)    if multi_district?(command)
   end
 
   def kindergarten_participation_correlates_with_household_income(input)
