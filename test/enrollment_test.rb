@@ -4,10 +4,6 @@ require './lib/enrollment_repository'
 
 class EnrollmentTest < Minitest::Test
 
-  def setup
-
-  end
-
   def test_enrollment_exists
     e = Enrollment.new({:name => "ACADEMY 20",
       :kindergarten_participation => {2010 => 0.3915, 2011 => 0.35356, 2012 => 0.2677}})
@@ -70,4 +66,17 @@ class EnrollmentTest < Minitest::Test
     assert_in_delta 0.895, enrollment.graduation_rate_in_year(2011), 0.005
     assert_in_delta 0.889, enrollment.graduation_rate_in_year(2012), 0.005
   end
+
+  def test_graduation_rate_average
+    er = EnrollmentRepository.new
+    er.load_data({
+      :enrollment => {
+        :high_school_graduation => "./test/fixtures/High school graduation rates.csv"
+      }
+    })
+    enrollment = er.find_by_name("ACADEMY 20")
+
+    assert_in_delta 0.8984, enrollment.graduation_rate_average, 0.005
+  end
+
 end
