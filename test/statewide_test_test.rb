@@ -69,4 +69,40 @@ class StatewideTestTest < Minitest::Test
     assert_in_delta 0.818, action, 0.005
   end
 
+  def test_race_check
+    data = {:name => "Hello", :stuff => "More Stuff"}
+    st = StatewideTest.new(data)
+    options = [ :asian, :black, :pacific_islander, :hispanic,
+                :native_american, :two_or_more, :white  ]
+
+    options.each do |option|
+      assert st.race_check(option)
+    end
+
+    refute st.race_check(:sheep)
+  end
+
+  def test_subject_check
+    data = {:name => "Hello", :stuff => "More Stuff"}
+    st = StatewideTest.new(data)
+    subjects = [:math, :reading, :writing]
+
+    subjects.each do |subject|
+      assert st.subject_check(subject)
+    end
+
+    refute st.subject_check(:philosophy)
+  end
+
+  def test_grade_check
+    data = {:name => "Hello", :stuff => "More Stuff"}
+    st = StatewideTest.new(data)
+
+    [3,8].each do |grade|
+      assert st.grade_check(grade)
+    end
+
+    refute st.grade_check(12)
+  end
+
 end
